@@ -1,0 +1,93 @@
+<!doctype html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <meta content="TIL" property="og:title">
+    <meta content="내일배움캠퍼의 TIL을 확인해보세요!" property="og:description">
+    <meta content="images/og_selectshop.png" property="og:image">
+    <link href="https://fonts.googleapis.com/css2?family=family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <link href="css/admin.css" rel="stylesheet">
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-1b93190375e9ccc259df3a57c1abc0e64599724ae30d7ea4c6877eb615f89387.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdpn.io/cp/internal/boomboom/pen.js?key=pen.js-edf85ae9-f842-0f58-8b68-5fd5a59e5b51" crossorigin=""></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/admin.js"></script>
+    <title>TIL</title>
+
+</head>
+<body class="sidebar-is-reduced">
+<header class="l-header">
+    <div class="l-header__inner clearfix">
+        <div class="c-header-icon js-hamburger">
+            <div class="hamburger-toggle"><span class="bar-top"></span><span class="bar-mid"></span><span class="bar-bot"></span></div>
+        </div>
+        <div class="c-header-icon has-dropdown"><span class="c-badge c-badge--red c-badge--header-icon animated swing">13</span><i class="fa fa-bell"></i>
+            <div class="c-dropdown c-dropdown--notifications">
+                <div class="c-dropdown__header"></div>
+                <div class="c-dropdown__content"></div>
+            </div>
+        </div>
+        <div class="c-search">
+            <input class="c-search__input u-input" placeholder="Search..." type="text"/>
+        </div>
+        <div class="header-icons-group">
+            <div class="c-header-icon basket"><span class="c-badge c-badge--blue c-badge--header-icon animated swing">4</span><i class="fa fa-shopping-basket"></i></div>
+            <div class="c-header-icon logout"><i class="fa fa-power-off"></i></div>
+        </div>
+    </div>
+</header>
+<div class="l-sidebar">
+    <div class="logo">
+        <div class="logo__txt">admin</div>
+    </div>
+    <div class="l-sidebar__content">
+        <nav class="c-menu js-menu">
+            <ul class="u-list">
+                <li class="c-menu__item is-active" data-toggle="tooltip" title="Flights">
+                    <div class="c-menu__item__inner"><i class="fa fa-plane"></i>
+                        <div class="c-menu-item__title"><span>Flights</span></div>
+                    </div>
+                </li>
+                <li class="c-menu__item has-submenu" data-toggle="tooltip" title="Modules">
+                    <div class="c-menu__item__inner"><i class="fa fa-puzzle-piece"></i>
+                        <div class="c-menu-item__title"><span>Modules</span></div>
+                        <div class="c-menu-item__expand js-expand-submenu"><i class="fa fa-angle-down"></i></div>
+                    </div>
+                    <ul class="c-menu__submenu u-list">
+                        <li>Payments</li>
+                        <li>Maps</li>
+                        <li>Notifications</li>
+                    </ul>
+                </li>
+                <li class="c-menu__item has-submenu" data-toggle="tooltip" title="Statistics">
+                    <div class="c-menu__item__inner"><i class="far fa-chart-bar"></i>
+                        <div class="c-menu-item__title"><span>Statistics</span></div>
+                    </div>
+                </li>
+                <li class="c-menu__item has-submenu" data-toggle="tooltip" title="Gifts">
+                    <div class="c-menu__item__inner"><i class="fa fa-gift"></i>
+                        <div class="c-menu-item__title"><span>Gifts</span></div>
+                    </div>
+                </li>
+                <li class="c-menu__item has-submenu" data-toggle="tooltip" title="Settings">
+                    <div class="c-menu__item__inner"><i class="fa fa-cogs"></i>
+                        <div class="c-menu-item__title"><span>Settings</span></div>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+</body>
+<main class="l-main">
+    <div class="content-wrapper content-wrapper--with-bg">
+        <h1 class="page-title">Dashboard</h1>
+        <div class="page-content">Content goes here</div>
+    </div>
+</main>
+</html>
