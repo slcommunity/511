@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
@@ -27,10 +27,34 @@
                 success: function (response) {
                     localStorage.setItem("token", response['token']);
                     localStorage.setItem("username", response['username']);
-                    location.href = '/';
+                    location.href = '/index.html';
                 },
                 error: function (response) {
                     alert("로그인이 불가합니다." + response.responseJSON.error)
+                },
+            })
+        }
+
+        function register(){
+            let info = {
+                username: $("#userID").val(),
+                password: $("#password").val(),
+                name : $("#name").val(),
+                blog : $("#blog").val(),
+                github : $("#github").val(),
+                turn : $("#turn").val()
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: `/signup`,
+                contentType: "application/json",
+                data: JSON.stringify(info),
+                success: function (response) {
+                    location.href = '/login.html';
+                },
+                error: function (response) {
+                    alert("회원가입이 불가합니다." + response.responseJSON.error)
                 },
             })
         }
@@ -96,7 +120,7 @@
             </div>
             <!--                </form>-->
 
-            <form action="/user/signup" method="post">
+<!--            <form action="/user/signup" method="post">-->
                 <div class="sign-up-htm">
                     <div class="group">
                         <label for="user" class="label">ID</label>
@@ -131,12 +155,12 @@
 
 
                     <div class="group">
-                        <input id="login-id-submit" type="submit" class="button" value="Sign Up">
+                        <input id="login-id-submit" type="submit" onclick="register()" class="button" value="Sign Up">
                     </div>
                     <div class="hr"></div>
                 </div>
         </div>
-        </form>
+<!--        </form>-->
 
     </div>
 </div>
