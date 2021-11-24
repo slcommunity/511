@@ -27,7 +27,6 @@ public class UserApiController {
 
     @RequestMapping(value = "/sign-in", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody UserDto userDto) throws Exception {
-        System.out.println(userDto.getUsername()+"\n"+ userDto.getPassword());
         authenticate(userDto.getUsername(), userDto.getPassword());
         final UserDetails userDetails = userDetailsService.loadUserByUsername(userDto.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails);
