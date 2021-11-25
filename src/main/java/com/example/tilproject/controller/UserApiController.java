@@ -15,6 +15,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+
 @RequiredArgsConstructor
 @RestController
 public class UserApiController {
@@ -40,6 +42,13 @@ public class UserApiController {
         final UserDetails userDetails = userDetailsService.loadUserByUsername(userDto.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails);
         return ResponseEntity.ok(new JwtResponse(token, userDetails.getUsername()));
+    }
+
+    @PutMapping(value = "/user")
+    public String updateUser(@ModelAttribute SignupRequestDto userDto) throws IOException {
+        userService.updateUser(userDto);
+
+        return "ok";
     }
 
     private void authenticate(String username, String password) throws Exception {

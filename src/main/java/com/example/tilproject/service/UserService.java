@@ -4,11 +4,13 @@ import com.example.tilproject.domain.User;
 import com.example.tilproject.domain.UserRole;
 import com.example.tilproject.dto.SignupRequestDto;
 import com.example.tilproject.repository.UserRepository;
+import com.example.tilproject.utils.S3Uploader;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -18,6 +20,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
+    private final S3Uploader s3Uploader;
 
     public void registerUser(SignupRequestDto requestDto) {
         String username = requestDto.getUsername();
@@ -33,8 +36,8 @@ public class UserService {
         String blog = requestDto.getBlog();
         String github = requestDto.getGithub();
         String turn = requestDto.getTurn();
-        String image = requestDto.getImage();
-
+//        String image = requestDto.getImage();
+        String image = null;
         // 사용자 ROLE 확인
         UserRole role = UserRole.USER;
         if (requestDto.isAdmin()) {
@@ -44,5 +47,10 @@ public class UserService {
 
         User user = new User(username, name, password, role, blog, github, turn, image);
         userRepository.save(user);
+    }
+
+    public void updateUser(SignupRequestDto userDto) throws IOException {
+        String imageUrl = s3Uploader.upload(userDto.getImage(), "userImages");
+        System.out.println(imageUrl);
     }
 }
