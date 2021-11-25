@@ -21,15 +21,9 @@
           rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
           crossorigin="anonymous">
+    <script src="js/logout.js"></script>
+    <script src="js/userInfo.js"></script>
     <script>
-        function logout() {
-            localStorage.removeItem('token');
-            localStorage.removeItem('userId')
-            sessionStorage.removeItem('userId');
-            alert('로그아웃을 완료했습니다.');
-            window.location.href = '/';
-        }
-
         $(document).ready(function () {
             let username = localStorage.getItem('userId')
             let token = localStorage.getItem('token')
@@ -85,54 +79,54 @@
 </nav>
 
 <section class="page-section portfolio" style="width: 70%; padding-left: 30%">
-    <h1>회원 정보 수정</h1>
+    <h1 style="font-weight: bold">회원 정보 수정</h1>
+
     <div style="margin-bottom: 5%; margin-top: 10%">
-        <img
-                src="image/default-image.jpg"
-                class="img-thumbnail" alt="..." style="height: 200px;width: 200px">
-        <div class="input-group mb-3" style="width: 200px">
-            <input type="file" class="form-control" id="inputGroupFile02">
+        <img id="preview-image" src="image/default-image.jpg" class="img-thumbnail" alt="..." style="height: 200px;width: 200px">
+        <div class="mb-3" style="width: 200px">
+            <input class="form-control-sm" type="file" id="input-image" accept="image/jpeg, image/jpg, image/png" onchange="setImage(event)">
         </div>
+        <button type="button" class="btn-sm btn-outline-danger" onclick="deleteImage()">이미지 삭제</button>
     </div>
 
     <div class="mb-3 row">
-        <label for="staticEmail" class="col-sm-2 col-form-label">아이디</label>
+        <label for="staticEmail" class="col-sm-2 col-form-label" style="font-weight: bold">아이디</label>
         <div class="col-sm-10">
             <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
         </div>
     </div>
     <div class="mb-3 row">
-        <label for="inputPassword" class="col-sm-2 col-form-label">비밀번호</label>
+        <label for="inputPassword" class="col-sm-2 col-form-label" style="font-weight: bold">비밀번호</label>
         <div class="col-sm-10">
             <input type="password" class="form-control" id="inputPassword">
         </div>
     </div>
     <div class="mb-3 row">
-        <label for="inputPasswordRepeat" class="col-sm-2 col-form-label">비밀번호 확인</label>
+        <label for="inputPasswordRepeat" class="col-sm-2 col-form-label" style="font-weight: bold">비밀번호 확인</label>
         <div class="col-sm-10">
             <input type="password" class="form-control" id="inputPasswordRepeat">
         </div>
     </div>
     <div class="mb-3 row">
-        <label for="name" class="col-sm-2 col-form-label">이름</label>
+        <label for="name" class="col-sm-2 col-form-label" style="font-weight: bold">이름</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" id="name">
         </div>
     </div>
     <div class="mb-3 row">
-        <label for="blog" class="col-sm-2 col-form-label">블로그 링크</label>
+        <label for="blog" class="col-sm-2 col-form-label" style="font-weight: bold">블로그 링크</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" id="blog">
         </div>
     </div>
     <div class="mb-3 row">
-        <label for="github" class="col-sm-2 col-form-label">블로그 링크</label>
+        <label for="github" class="col-sm-2 col-form-label" style="font-weight: bold">깃헙 링크</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" id="github">
         </div>
     </div>
 
-    <div class="d-grid gap-2 col-6 mx-auto text-center" style="margin-top: 10%">
+    <div class="d-grid gap-2 col-6 mx-auto text-center" style="margin-top: 10%" style="font-weight: bold">
         <button class="btn btn-primary" type="button" onclick="updateInfo()">수정</button>
     </div>
 

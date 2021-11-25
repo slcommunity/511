@@ -20,23 +20,17 @@
           rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
           crossorigin="anonymous">
+    <script src="js/logout.js"></script>
     <script>
-        function logout() {
-            localStorage.removeItem('token');
-            localStorage.removeItem('userId')
-            sessionStorage.removeItem('userId');
-            alert('로그아웃을 완료했습니다.');
-            window.location.href = '/';
-        }
-
         $(document).ready(function () {
             let username = localStorage.getItem('userId')
             let token = localStorage.getItem('token')
             let temphtml
-            console.log(username)
-            console.log(token)
+
             if(token == null && token == null){
                 temphtml = `<li><a class="dropdown-item" href="login.html">로그인</a></li>`
+                $("#userInfo").removeClass("fas")
+                $("#userInfo").addClass("far")
             }
             else {
                 temphtml = `<li><a class="dropdown-item" href="userinfo.html">내 정보</a></li>
@@ -44,6 +38,8 @@
                             <li><a class="dropdown-item" href="#">내가 쓴 댓글</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" onclick="logout()">로그아웃</a></li>`
+                $("#userInfo").removeClass("far")
+                $("#userInfo").addClass("fas")
             }
             $("#user-dropdown").append(temphtml)
         });
@@ -67,7 +63,7 @@
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="">타임어택</a></li>
                 <li class="nav-item mx-0 mx-lg-1 dropdown">
                     <a class="nav-link py-3 px-0 px-lg-3 rounded dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="far fa-user"></i>
+                        <i id="userInfo" class="far fa-user"></i>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="user-dropdown">
 
@@ -228,6 +224,7 @@
         </div>
     </div>
 </footer>
+
 <!-- Copyright Section-->
 <div class="copyright py-4 text-center text-white">
     <div class="container"><small>Copyright &copy; Your Website 2021</small></div>
