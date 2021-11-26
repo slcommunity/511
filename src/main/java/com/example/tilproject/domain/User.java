@@ -65,8 +65,4 @@ public class User extends Timestamped{
         this.github = github;
         this.image = image;
     }
-
-    public void test(String image){
-        this.image = image;
-    }
 }
