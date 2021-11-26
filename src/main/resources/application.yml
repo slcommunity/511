@@ -39,3 +39,10 @@ spring:
 
 jwt:
   secret: javainuse
+
+logging:
+  level:
+    com:
+      amazonaws:
+        util:
+          EC2MetadataUtils: error

@@ -17,19 +17,15 @@
           type="text/css"/>
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/index.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-          crossorigin="anonymous">
+
     <script src="js/logout.js"></script>
     <script src="js/userInfo.js"></script>
+<!--    <script src="js/ajaxPreFilter.js"></script>-->
     <script>
         $(document).ready(function () {
             let username = localStorage.getItem('userId')
             let token = localStorage.getItem('token')
             let temphtml
-            console.log(username)
-            console.log(token)
             if (token == null && token == null) {
                 temphtml = `<li><a class="dropdown-item" href="login.html">로그인</a></li>`
             } else {
@@ -40,6 +36,25 @@
                             <li><a class="dropdown-item" onclick="logout()">로그아웃</a></li>`
             }
             $("#user-dropdown").append(temphtml)
+        });
+
+        $(document).ready(function () {
+            let username = localStorage.getItem('userId')
+            $.ajax({
+                type: "GET",
+                url: `/userInfo/${username}`,
+                data: {},
+                success: function (response) {
+                    console.log(response['image'])
+                    if(response['image'] != null){
+                        $("#preview-image").attr('src', response['image'])
+                    }
+                    $("#id").attr('value', response['username'])
+                    $("#name").attr('placeholder', response['name'])
+                    $("#blog").attr('placeholder', response['blog'])
+                    $("#github").attr('placeholder', response['github'])
+                }
+            })
         });
     </script>
 </head>
@@ -92,7 +107,7 @@
     <div class="mb-3 row">
         <label for="id" class="col-sm-2 col-form-label" style="font-weight: bold">아이디</label>
         <div class="col-sm-10">
-            <input type="text" readonly class="form-control-plaintext" id="id" value="email@example.com">
+            <input type="text" readonly class="form-control-plaintext" id="id">
         </div>
     </div>
     <div class="mb-3 row">
@@ -176,7 +191,6 @@
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
-<script src="js/scripts.js"></script>
 <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 </body>
 </html>

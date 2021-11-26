@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -21,6 +22,10 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final S3Uploader s3Uploader;
+
+    public User searchUser(String username){
+        return userRepository.findByUsername(username).orElse(null);
+    }
 
     public void registerUser(SignupRequestDto requestDto) {
         String username = requestDto.getUsername();
@@ -49,8 +54,19 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void updateUser(SignupRequestDto userDto) throws IOException {
-        String imageUrl = s3Uploader.upload(userDto.getImage(), "userImages");
-        System.out.println(imageUrl);
+    @Transactional
+    public void updateUser(SignupRequestDto requestDto, User user) throws IOException {
+        User found = userRepository.findByUsername(user.getUsername()).orElse(null);
+        String imageUrl = s3Uploader.upload(requestDto.getImage(), "userImages", user);
+
+        String username = user.getUsername();
+        String name = requestDto.getName();
+        String password = passwordEncoder.encode(requestDto.getPassword());
+        String blog = requestDto.getBlog();
+        String github = requestDto.getGithub();
+
+        if(found != null){
+            found.update( username,  name,  password, blog, github, imageUrl);
+        }
     }
 }

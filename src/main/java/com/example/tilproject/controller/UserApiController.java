@@ -1,8 +1,10 @@
 package com.example.tilproject.controller;
 
+import com.example.tilproject.domain.User;
 import com.example.tilproject.dto.JwtResponse;
 import com.example.tilproject.dto.SignupRequestDto;
 import com.example.tilproject.dto.UserDto;
+import com.example.tilproject.security.UserDetailsImpl;
 import com.example.tilproject.service.UserService;
 import com.example.tilproject.utils.JwtTokenUtil;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +13,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
@@ -44,11 +47,19 @@ public class UserApiController {
         return ResponseEntity.ok(new JwtResponse(token, userDetails.getUsername()));
     }
 
-    @PutMapping(value = "/user")
-    public String updateUser(@ModelAttribute SignupRequestDto userDto) throws IOException {
-        userService.updateUser(userDto);
+    @PutMapping(value = "/userInfo")
+    public String updateUser(@ModelAttribute SignupRequestDto userDto,
+                             @AuthenticationPrincipal UserDetailsImpl userDetails) throws IOException {
+        User user = userDetails.getUser();
+        System.out.println(user.getUsername());
+        userService.updateUser(userDto, user);
 
         return "ok";
+    }
+
+    @GetMapping(value = "/userInfo/{username}")
+    public User getUserInfo(@PathVariable String username){
+        return userService.searchUser(username);
     }
 
     private void authenticate(String username, String password) throws Exception {
