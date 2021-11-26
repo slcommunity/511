@@ -56,4 +56,13 @@ public class User extends Timestamped{
         this.turn = turn;
         this.image = image;
     }
+
+    public void update(String username, String name, String password, String blog, String github, String image){
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.blog = blog;
+        this.github = github;
+        this.image = image;
+    }
 }
