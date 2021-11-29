@@ -34,24 +34,52 @@
                             <li><a class="dropdown-item" onclick="logout()">로그아웃</a></li>`
             }
             $("#user-dropdown").append(temphtml)
+            $("#userInfo").removeClass("far").addClass("fas")
         });
+
+        function searchName(){
+            let name = $("#searchName").val()
+            $.ajax({
+                type: "GET",
+                url: `/users?searchName=${name}`,
+                data: {},
+                success: function (response) {
+                    $("#cards").empty()
+                    for (let i = 0; i <response.length; i++) {
+                        let member = response[i]
+                        makeCard(member)
+                    }
+                }
+            })
+        }
 
         $(document).ready(function () {
-            makeCard()
-            makeCard()
-            makeCard()
-            makeCard()
-            makeCard()
-            makeCard()
+            $.ajax({
+                type: "GET",
+                url: `/users`,
+                data: {},
+                success: function (response) {
+                    for (let i = 0; i <response.length; i++) {
+                        let member = response[i]
+                        makeCard(member)
+                    }
+                }
+            })
         });
 
-        function makeCard() {
-            let imageUrl = "https://til511-bucket.s3.ap-northeast-2.amazonaws.com/userImages/applehee"
+        function makeCard(member) {
+            let imageUrl;
+            if(member['image'] == null){
+                imageUrl = "image/default-image.jpg"
+            }
+            else{
+                imageUrl = member['image']
+            }
             let tmp = `<a class="card" href="#">
                             <div class="card__background" style="background-image: url(${imageUrl})"></div>
                             <div class="card__content">
-                                <p class="card__category">Category</p>
-                                <h3 class="card__heading">Example Card Heading</h3>
+                                <p class="card__category"></p>
+                                <h3 class="card__heading">${member['name']}</h3>
                             </div>
                         </a>`
             $("#cards").append(tmp);
@@ -99,6 +127,15 @@
 
 
 <section class="page-section portfolio" style="width: 70%; padding-left: 30%">
+    <div class="wrap" style="margin-bottom: 5%">
+        <div class="search">
+            <input id="searchName" type="text" class="searchTerm" placeholder="이름으로 검색">
+            <button type="submit" class="searchButton" onclick="searchName()">
+                <i class="fa fa-search"></i>
+            </button>
+        </div>
+    </div>
+
     <div class="card-grid" id="cards">
         <a class="card" href="#">
             <div class="card__background"
@@ -114,24 +151,8 @@
             <div class="card__content">
                 <p class="card__category">Category</p>
                 <h3 class="card__heading">Example Card Heading</h3>
+                <button class="fab fa-github">fasffsdf</button>
             </div>
-        </a>
-        <a class="card" href="#">
-            <div class="card__background"
-                 style="background-image: url(https://images.unsplash.com/photo-1556680262-9990363a3e6d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>
-            <div class="card__content">
-                <p class="card__category">Category</p>
-                <h3 class="card__heading">Example Card Heading</h3>
-            </div>
-
-            <a class="card" href="#">
-                <div class="card__background"
-                     style="background-image: url(https://images.unsplash.com/photo-1557004396-66e4174d7bf6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>
-                <div class="card__content">
-                    <p class="card__category">Category</p>
-                    <h3 class="card__heading">Example Card Heading</h3>
-                </div>
-            </a>
         </a>
     </div>
 </section>
