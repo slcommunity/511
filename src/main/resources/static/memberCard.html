@@ -37,7 +37,7 @@
             $("#userInfo").removeClass("far").addClass("fas")
         });
 
-        function searchName(){
+        function searchName() {
             let name = $("#searchName").val()
             $.ajax({
                 type: "GET",
@@ -45,7 +45,7 @@
                 data: {},
                 success: function (response) {
                     $("#cards").empty()
-                    for (let i = 0; i <response.length; i++) {
+                    for (let i = 0; i < response.length; i++) {
                         let member = response[i]
                         makeCard(member)
                     }
@@ -59,7 +59,7 @@
                 url: `/users`,
                 data: {},
                 success: function (response) {
-                    for (let i = 0; i <response.length; i++) {
+                    for (let i = 0; i < response.length; i++) {
                         let member = response[i]
                         makeCard(member)
                     }
@@ -69,17 +69,18 @@
 
         function makeCard(member) {
             let imageUrl;
-            if(member['image'] == null){
+            if (member['image'] == null) {
                 imageUrl = "image/default-image.jpg"
-            }
-            else{
+            } else {
                 imageUrl = member['image']
             }
-            let tmp = `<a class="card" href="#">
+            let tmp = `<a class="card">
                             <div class="card__background" style="background-image: url(${imageUrl})"></div>
-                            <div class="card__content">
-                                <p class="card__category"></p>
-                                <h3 class="card__heading">${member['name']}</h3>
+                            <div class="card__content" style="height: 100%">
+                                <p class="card__category">${member['turn']}기</p>
+                                <h3 class="card__heading" style="margin-bottom: 90%">${member['name']}</h3>
+                                <button style="width: 25%; height: min-content; color: black" class="fab fa-github" onclick="window.location.href='${member['github']}'"></button>
+                                <button style="width: 25%; height: min-content; margin-left: 50px; color: black" class="fas fa-newspaper" onclick="location.href='${member['blog']}'"></button>
                             </div>
                         </a>`
             $("#cards").append(tmp);
@@ -137,23 +138,7 @@
     </div>
 
     <div class="card-grid" id="cards">
-        <a class="card" href="#">
-            <div class="card__background"
-                 style="background-image: url(https://images.unsplash.com/photo-1557177324-56c542165309?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80)"></div>
-            <div class="card__content">
-                <p class="card__category">Category</p>
-                <h3 class="card__heading">Example Card Heading</h3>
-            </div>
-        </a>
-        <a class="card" href="#">
-            <div class="card__background"
-                 style="background-image: url(https://images.unsplash.com/photo-1557187666-4fd70cf76254?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>
-            <div class="card__content">
-                <p class="card__category">Category</p>
-                <h3 class="card__heading">Example Card Heading</h3>
-                <button class="fab fa-github">fasffsdf</button>
-            </div>
-        </a>
+<!--        멤버 카드 추가 하는 자리-->
     </div>
 </section>
 
