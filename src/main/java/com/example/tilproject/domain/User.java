@@ -9,6 +9,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Entity
+@Table(name = "users")
 public class User extends Timestamped{
 
     @Id
@@ -27,11 +28,14 @@ public class User extends Timestamped{
     private String image;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Recent> recents;
+    private List<NewPost> newPosts;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Board> boards;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Review> reviews;
+
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
+    private UserStatus userStatus;
 }

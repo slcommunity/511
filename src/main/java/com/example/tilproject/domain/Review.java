@@ -1,7 +1,6 @@
 package com.example.tilproject.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -28,4 +27,5 @@ public class Review extends Timestamped{
     @JoinColumn(name = "board")
     @ManyToOne
     private Board board;
+    
 }
