@@ -3,6 +3,7 @@ package com.example.tilproject.service;
 import com.example.tilproject.domain.User;
 import com.example.tilproject.domain.UserRole;
 import com.example.tilproject.dto.SignupRequestDto;
+import com.example.tilproject.dto.UserDto;
 import com.example.tilproject.repository.UserRepository;
 import com.example.tilproject.utils.S3Uploader;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -67,6 +69,15 @@ public class UserService {
 
         if(found != null){
             found.update( username,  name,  password, blog, github, imageUrl);
+        }
+    }
+
+    public List<User> getUsers(String searchName){
+        if(searchName == null){
+            return userRepository.findAll();
+        }
+        else{
+            return userRepository.findByNameContaining(searchName);
         }
     }
 }

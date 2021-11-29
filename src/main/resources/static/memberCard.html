@@ -17,9 +17,8 @@
           type="text/css"/>
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/index.css" rel="stylesheet">
-
+    <link href="css/memberCard.css" rel="stylesheet">
     <script src="js/logout.js"></script>
-    <script src="js/userInfo.js"></script>
     <script>
         $(document).ready(function () {
             let username = localStorage.getItem('userId')
@@ -35,27 +34,61 @@
                             <li><a class="dropdown-item" onclick="logout()">로그아웃</a></li>`
             }
             $("#user-dropdown").append(temphtml)
+            $("#userInfo").removeClass("far").addClass("fas")
         });
 
-        $(document).ready(function () {
-            let username = localStorage.getItem('userId')
+        function searchName() {
+            let name = $("#searchName").val()
             $.ajax({
                 type: "GET",
-                url: `/userInfo/${username}`,
+                url: `/users?searchName=${name}`,
                 data: {},
                 success: function (response) {
-                    console.log(response['image'])
-                    if(response['image'] != null){
-                        $("#preview-image").attr('src', response['image'])
+                    $("#cards").empty()
+                    for (let i = 0; i < response.length; i++) {
+                        let member = response[i]
+                        makeCard(member)
                     }
-                    $("#id").attr('value', response['username'])
-                    $("#name").attr('placeholder', response['name'])
-                    $("#blog").attr('placeholder', response['blog'])
-                    $("#github").attr('placeholder', response['github'])
+                }
+            })
+        }
+
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: `/users`,
+                data: {},
+                success: function (response) {
+                    for (let i = 0; i < response.length; i++) {
+                        let member = response[i]
+                        makeCard(member)
+                    }
                 }
             })
         });
+
+        function makeCard(member) {
+            let imageUrl;
+            if (member['image'] == null) {
+                imageUrl = "image/default-image.jpg"
+            } else {
+                imageUrl = member['image']
+            }
+            let tmp = `<a class="card">
+                            <div class="card__background" style="background-image: url(${imageUrl})"></div>
+                            <div class="card__content" style="height: 100%">
+                                <p class="card__category">${member['turn']}기</p>
+                                <h3 class="card__heading" style="margin-bottom: 90%">${member['name']}</h3>
+                                <button style="width: 25%; height: min-content; color: black" class="fab fa-github" onclick="window.location.href='${member['github']}'"></button>
+                                <button style="width: 25%; height: min-content; margin-left: 50px; color: black" class="fas fa-newspaper" onclick="location.href='${member['blog']}'"></button>
+                            </div>
+                        </a>`
+            $("#cards").append(tmp);
+        }
     </script>
+    <style>
+
+    </style>
 </head>
 <body id="page-top">
 <!-- Navigation-->
@@ -71,7 +104,8 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="">최신글</a></li>
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="memberCard.html">멤버카드</a></li>
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="memberCard.html">멤버카드</a>
+                </li>
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="">자유게시판</a></li>
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="">발제모음</a></li>
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="">타임어택</a></li>
@@ -92,62 +126,21 @@
     </div>
 </nav>
 
+
 <section class="page-section portfolio" style="width: 70%; padding-left: 30%">
-    <h1 style="font-weight: bold">회원 정보 수정</h1>
-
-    <div style="margin-bottom: 5%; margin-top: 10%">
-        <img id="preview-image" src="image/default-image.jpg" class="img-thumbnail" alt="..." style="height: 200px;width: 200px">
-        <div class="mb-3" style="width: 200px">
-            <input class="form-control-sm" type="file" id="input-image" accept="image/jpeg, image/jpg, image/png" onchange="setImage(event)">
-        </div>
-        <button type="button" class="btn-sm btn-outline-danger" onclick="deleteImage()">이미지 삭제</button>
-    </div>
-
-    <div class="mb-3 row">
-        <label for="id" class="col-sm-2 col-form-label" style="font-weight: bold">아이디</label>
-        <div class="col-sm-10">
-            <input type="text" readonly class="form-control-plaintext" id="id">
-        </div>
-    </div>
-    <div class="mb-3 row">
-        <label for="password" class="col-sm-2 col-form-label" style="font-weight: bold">비밀번호</label>
-        <div class="col-sm-10">
-            <input type="password" class="form-control" id="password">
-        </div>
-    </div>
-    <div class="mb-3 row">
-        <label for="passwordRepeat" class="col-sm-2 col-form-label" style="font-weight: bold">비밀번호 확인</label>
-        <div class="col-sm-10">
-            <input type="password" class="form-control" id="passwordRepeat">
-        </div>
-    </div>
-    <div class="mb-3 row">
-        <label for="name" class="col-sm-2 col-form-label" style="font-weight: bold">이름</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="name">
-        </div>
-    </div>
-    <div class="mb-3 row">
-        <label for="blog" class="col-sm-2 col-form-label" style="font-weight: bold">블로그 링크</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="blog">
-        </div>
-    </div>
-    <div class="mb-3 row">
-        <label for="github" class="col-sm-2 col-form-label" style="font-weight: bold">깃헙 링크</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="github">
+    <div class="wrap" style="margin-bottom: 5%">
+        <div class="search">
+            <input id="searchName" type="text" class="searchTerm" placeholder="이름으로 검색">
+            <button type="submit" class="searchButton" onclick="searchName()">
+                <i class="fa fa-search"></i>
+            </button>
         </div>
     </div>
 
-    <div class="d-grid gap-2 col-6 mx-auto text-center" style="margin-top: 10%" style="font-weight: bold">
-        <button class="btn btn-primary" type="button" onclick="updateInfo()">수정</button>
+    <div class="card-grid" id="cards">
+<!--        멤버 카드 추가 하는 자리-->
     </div>
-
-    <div class="hr"></div>
-
 </section>
-
 
 <!-- Footer-->
 <footer class="footer text-center fixed-bottom" style="position: static">
