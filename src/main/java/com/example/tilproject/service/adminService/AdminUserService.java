@@ -34,9 +34,9 @@ public class AdminUserService {
         return new PagingResult(userGetDto, users.getTotalPages());
     }
 
-    public int deleteUser(String userId) {
+    public String deleteUser(String userId) {
         User user = userRepository.findByUserId(userId).get();
         userRepository.delete(user);
-        return 1;
+        return user.getName();
     }
 }
