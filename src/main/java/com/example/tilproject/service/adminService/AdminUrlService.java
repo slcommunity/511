@@ -22,8 +22,8 @@ public class AdminUrlService {
 
     public List<UrlTurnDto> getUrl(String turn) {
         List<Url> urls = urlRepository.findAllByUrlTurn(turn);
-        if(urls == null) throw new IllegalArgumentException("해당하는 기수의 Url이 없습니다.");
-        else{
+        if (urls == null) throw new IllegalArgumentException("해당하는 기수의 Url이 없습니다.");
+        else {
             List<UrlTurnDto> urlTurnDtos = urls.stream()
                     .map(m -> new UrlTurnDto(m.getUrl(), m.getUrlName(), m.getRole()))
                     .collect(Collectors.toList());
@@ -34,8 +34,8 @@ public class AdminUrlService {
     @Transactional
     public String modifyUrl(UrlModifyDto urlModifyDto) {
         Url url = urlRepository.findByUrlAndUrlNameAndUrlTurn(urlModifyDto.getUrl(),
-                                                    urlModifyDto.getUrlname(),
-                                                    urlModifyDto.getTurn()).get();
+                                                                urlModifyDto.getUrlname(),
+                                                                urlModifyDto.getTurn()).get();
 
         url.setUrl(urlModifyDto.getTourl());
         url.setUrlName(urlModifyDto.getTourlname());
@@ -45,7 +45,7 @@ public class AdminUrlService {
 
     @Transactional
     public String createUrl(UrlCreateDeleteDto urlCreateDeleteDto) {
-        if(urlRepository.findByUrlAndUrlNameAndUrlTurn(urlCreateDeleteDto.getUrl(), urlCreateDeleteDto.getUrlName(), urlCreateDeleteDto.getTurn()).isPresent()){
+        if (urlRepository.findByUrlAndUrlNameAndUrlTurn(urlCreateDeleteDto.getUrl(), urlCreateDeleteDto.getUrlName(), urlCreateDeleteDto.getTurn()).isPresent()) {
             throw new IllegalArgumentException("이미 존재하는 Url입니다.");
         }
         Url url = new Url(urlCreateDeleteDto.getUrl(), urlCreateDeleteDto.getUrlName(), urlCreateDeleteDto.getTurn(), urlCreateDeleteDto.getRole());
@@ -55,7 +55,7 @@ public class AdminUrlService {
 
     @Transactional
     public String deleteUrl(UrlCreateDeleteDto urlCreateDeleteDto) {
-        if(!urlRepository.findByUrlAndUrlNameAndUrlTurn(urlCreateDeleteDto.getUrl(), urlCreateDeleteDto.getUrlName(), urlCreateDeleteDto.getTurn()).isPresent()){
+        if (!urlRepository.findByUrlAndUrlNameAndUrlTurn(urlCreateDeleteDto.getUrl(), urlCreateDeleteDto.getUrlName(), urlCreateDeleteDto.getTurn()).isPresent()) {
             throw new IllegalArgumentException("삭제할 Url이 없습니다..");
         }
         Url url = urlRepository.findByUrlAndUrlNameAndUrlTurn(urlCreateDeleteDto.getUrl(), urlCreateDeleteDto.getUrlName(), urlCreateDeleteDto.getTurn()).get();

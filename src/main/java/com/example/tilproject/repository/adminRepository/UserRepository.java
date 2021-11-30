@@ -8,10 +8,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Optional;
 
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, String> {
     Page<User> findAllByTurn(String turn, Pageable pageable);
 
-    Optional<User> findByUserId(String userId);
-
     List<User> findByNameContaining(String searchName);
+
+    Optional<User> findByUsername(String username);
+
 }
