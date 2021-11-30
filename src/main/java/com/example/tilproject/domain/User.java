@@ -44,7 +44,7 @@ public class User extends Timestamped{
     private List<Board> boards;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Review> reviews;
+    private List<Comment> comments;
 
     public User(String username, String name, String password, UserRole role, String blog, String github, String turn, String image) {
         this.username = username;

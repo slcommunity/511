@@ -2,6 +2,7 @@ package com.example.tilproject.domain;
 
 import com.example.tilproject.dto.BoardCommentRequestDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,6 +23,11 @@ public class Comment extends Timestamped {
     @ManyToOne
     @JoinColumn(name = "board", nullable = false)
     private Board board;
+
+    @JsonIgnoreProperties({"comments"})
+    @JoinColumn(name = "username")
+    @ManyToOne
+    private User user;
 
     public Comment(BoardCommentRequestDto requestDto, Board board) {
         this.content = requestDto.getContent();

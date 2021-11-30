@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="css/index.css" rel="stylesheet">
+    <script src="js/index.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<style>
+    section#main {
+        width:758px;
+        margin:  auto;
+        /* border:solid 1px #ff0000; */
+    }
+    section#main h2#board_title {
+        margin-top:20px;
+        padding:0 0 5px 0;
+        /* border-bottom:solid 1px #bbbbbb; */
+    }
+    section#main #write_title {
+        text-align:center;
+        margin:10px 0 0 0;
+        padding:5px;
+        background-color:#eeeeee;
+        border-top:solid 2px #bbbbbb;
+        border-bottom:solid 1px #bbbbbb;
+    }
+    section#main table {
+        border-collapse:collapse;
+        margin:0 auto;
+        width:100%;
+    }
+    section#main td {
+        border-bottom:solid 1px #dddddd;
+        padding:10px;
+    }
+    section#main td.col1 {
+        width:150px;
+        text-align:center;
+        border-right:solid 1px #cccccc;
+    }
+    section#main td.col2 {
+        padding:5px 0 0 10px;
+    }
+    section#main #name input {
+        width:100px;
+        height:16px;
+        border:solid 1px #00ba2e;
+    }
+    section#main #subject input {
+        width:550px;
+        height:16px;
+    }
+    section#main #content textarea {
+        width:550px;
+        height:200px;
+        margin:5px 5px 5px 0;
+    }
+    section#main #buttons {
+        text-align:right;
+        margin:10px 10px 0 0;
+    }
+</style>
+<body>
+<section id="main">
+
+    <h2 id="board_title">자유 게시판 </h2>
+    <div id="write_title"><h2>글쓰기</h2></div>
+    <table>
+        <tr id="subject">
+            <td class="col1">제목</td>
+            <td class="col2"><input id="title" type="text"></td>
+        </tr>
+        <tr id="content">
+            <td class="col1">내용</td>
+            <td class="col2"><label for="contents"></label><textarea id="contents"></textarea></td>
+        </tr>
+    </table>
+    <div id="buttons">
+        <button type="button" class="btn btn-primary" onclick="postArticle()">저장</button>
+        <button type="button" class="btn btn-primary" ><a href="board_list.html">목록 바로가기</a></button>
+    </div>
+</section> <!-- section main -->
+
+<script>
+    function postArticle() {
+        let title = $("#title").val()
+        let contents = $("#contents").val()
+
+        // let content = $('#content').val();
+
+        // if(isVaildContent(content) == false){
+        //     return;
+        // }
+
+        //let userinfo = userinfo
+        //let data = {'userinfo': username, 'content': content};
+        let data = {
+            'title': title,
+            'contents': contents
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "/boards",
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token'));
+            },
+            success: function (response) {
+                alert('작성 완료!');
+                window.location.reload();
+            }
+        })
+        console.log("test2");
+    }
+</script>
+
+</body> </html>

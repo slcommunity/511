@@ -27,18 +27,19 @@ public class Board extends Timestamped{
     private String content;
 
     @JsonIgnoreProperties({"boards"})
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "username")
     @ManyToOne
     private User user;
 
 
     @OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
-    private List<Review> reviews;
+    private List<Comment> comments;
 
 
-    public Board(BoardRequestDto boardRequestDto) {
+    public Board(BoardRequestDto boardRequestDto, User user) {
         this.title = boardRequestDto.getTitle();
         this.content = boardRequestDto.getContents();
+        this.user = user;
     }
 
     public Board update(BoardRequestDto requestDto) {

@@ -2,6 +2,7 @@ package com.example.tilproject.service;
 
 import com.example.tilproject.domain.Board;
 import com.example.tilproject.domain.Comment;
+import com.example.tilproject.domain.User;
 import com.example.tilproject.dto.BoardCommentRequestDto;
 import com.example.tilproject.repository.BoardRepository;
 import com.example.tilproject.dto.BoardRequestDto;
@@ -20,8 +21,8 @@ public class BoardService {
     private final BoardRepository boardRepository;
     private final CommentRepository commentRepository;
 
-    public Board SetBoard(BoardRequestDto boardRequestDto) {
-        Board board = new Board(boardRequestDto);
+    public Board SetBoard(BoardRequestDto boardRequestDto, User user) {
+        Board board = new Board(boardRequestDto, user);
         boardRepository.save(board);
         return board;
     }
