@@ -8,13 +8,15 @@
     <meta content="TIL" property="og:title">
     <meta content="내일배움캠퍼의 TIL을 확인해보세요!" property="og:description">
     <meta content="images/og_selectshop.png" property="og:image">
-    <link href="https://fonts.googleapis.com/css2?family=family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <!--    <link href="https://fonts.googleapis.com/css2?family=family=Nanum+Gothic&display=swap" rel="stylesheet">-->
     <link href="css/admin.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-1b93190375e9ccc259df3a57c1abc0e64599724ae30d7ea4c6877eb615f89387.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdpn.io/cp/internal/boomboom/pen.js?key=pen.js-edf85ae9-f842-0f58-8b68-5fd5a59e5b51" crossorigin=""></script>
+    <!--    <script src="https://cdpn.io/cp/internal/boomboom/pen.js?key=pen.js-edf85ae9-f842-0f58-8b68-5fd5a59e5b51" crossorigin=""></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="js/admin.js"></script>
     <title>TIL</title>
@@ -24,19 +26,17 @@
 <header class="l-header">
     <div class="l-header__inner clearfix">
         <div class="c-header-icon js-hamburger">
-            <div class="hamburger-toggle"><span class="bar-top"></span><span class="bar-mid"></span><span class="bar-bot"></span></div>
+            <div class="hamburger-toggle"><span class="bar-top"></span><span class="bar-mid"></span><span
+                    class="bar-bot"></span></div>
         </div>
-        <div class="c-header-icon has-dropdown"><span class="c-badge c-badge--red c-badge--header-icon animated swing">13</span><i class="fa fa-bell"></i>
+        <div class="c-header-icon has-dropdown"><span class="c-badge c-badge--red c-badge--header-icon animated swing">13</span><i
+                class="fa fa-bell"></i>
             <div class="c-dropdown c-dropdown--notifications">
                 <div class="c-dropdown__header"></div>
                 <div class="c-dropdown__content"></div>
             </div>
         </div>
-        <div class="c-search">
-            <input class="c-search__input u-input" placeholder="Search..." type="text"/>
-        </div>
         <div class="header-icons-group">
-            <div class="c-header-icon basket"><span class="c-badge c-badge--blue c-badge--header-icon animated swing">4</span><i class="fa fa-shopping-basket"></i></div>
             <div class="c-header-icon logout"><i class="fa fa-power-off"></i></div>
         </div>
     </div>
@@ -48,35 +48,21 @@
     <div class="l-sidebar__content">
         <nav class="c-menu js-menu">
             <ul class="u-list">
-                <li class="c-menu__item is-active" data-toggle="tooltip" title="Flights">
-                    <div class="c-menu__item__inner"><i class="fa fa-plane"></i>
-                        <div class="c-menu-item__title"><span>Flights</span></div>
+                <li class="c-menu__item" id="user-tag" data-toggle="tooltip" title="Flights">
+                    <div class="c-menu__item__inner t_color" onclick="setListType('user'); showByTurn(1);">사용자 관리
                     </div>
                 </li>
-                <li class="c-menu__item has-submenu" data-toggle="tooltip" title="Modules">
-                    <div class="c-menu__item__inner"><i class="fa fa-puzzle-piece"></i>
-                        <div class="c-menu-item__title"><span>Modules</span></div>
-                        <div class="c-menu-item__expand js-expand-submenu"><i class="fa fa-angle-down"></i></div>
-                    </div>
-                    <ul class="c-menu__submenu u-list">
-                        <li>Payments</li>
-                        <li>Maps</li>
-                        <li>Notifications</li>
-                    </ul>
-                </li>
-                <li class="c-menu__item has-submenu" data-toggle="tooltip" title="Statistics">
-                    <div class="c-menu__item__inner"><i class="far fa-chart-bar"></i>
-                        <div class="c-menu-item__title"><span>Statistics</span></div>
+                <li class="c-menu__item has-submenu" id="turn-tag" data-toggle="tooltip" title="Modules">
+                    <div class="c-menu__item__inner t_color" onclick="setListType('turn'); showTurn()">기수 생성
                     </div>
                 </li>
-                <li class="c-menu__item has-submenu" data-toggle="tooltip" title="Gifts">
-                    <div class="c-menu__item__inner"><i class="fa fa-gift"></i>
-                        <div class="c-menu-item__title"><span>Gifts</span></div>
+                <li class="c-menu__item has-submenu" id="time-tag" data-toggle="tooltip" title="Statistics">
+                    <div class="c-menu__item__inner t_color"
+                         onclick="setListType('time'); showByTurn(2); showUrls(turnInfo);">발제,타임어택
                     </div>
                 </li>
-                <li class="c-menu__item has-submenu" data-toggle="tooltip" title="Settings">
-                    <div class="c-menu__item__inner"><i class="fa fa-cogs"></i>
-                        <div class="c-menu-item__title"><span>Settings</span></div>
+                <li class="c-menu__item has-submenu" id="board-tag" data-toggle="tooltip" title="Gifts">
+                    <div class="c-menu__item__inner t_color" onclick="setListType('board')">자유게시판
                     </div>
                 </li>
             </ul>
@@ -85,9 +71,141 @@
 </div>
 </body>
 <main class="l-main">
-    <div class="content-wrapper content-wrapper--with-bg">
-        <h1 class="page-title">Dashboard</h1>
-        <div class="page-content">Content goes here</div>
+
+    <div class="content-wrapper content-wrapper--with-bg d-none" id="user">
+        <h1 class="page-title">사용자 정보 수정</h1>
+        <div style="display: block">
+            <div class="col-4" style="float:left;">
+                <span>기수 선택</span>
+                <select class="custom-select col-2" id="turnUserSelect">
+                    <option value="2">1</option>
+                    <option value="2">2</option>
+                </select>
+            </div>
+            <div class="input-group col-2" style="float: right">
+                <input class="form-control" id="searchUser" placeholder="이름">
+                <button type="button" class="btn btn-primary" onclick="searchingName()">검색</button>
+            </div>
+        </div>
+        <br><br>
+        <div class="page-content">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">이름</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">블로그 URL</th>
+                    <th scope="col">Github 주소</th>
+                    <th scope="col">최근 접속 시간</th>
+                    <th scope="col">댓글 현황</th>
+                    <th scope="col">TIL 현황</th>
+                    <th scope="col">사용자 삭제</th>
+                </tr>
+                </thead>
+                <tbody id="list-user">
+                <tr>
+                    <td>1</td>
+                    <td>ID</td>
+                    <td>URL</td>
+                    <td>Github</td>
+                    <td>e-mail</td>
+                    <td>recent</td>
+                    <td>comment</td>
+                    <td>19개</td>
+                    <td>
+                        <button class="btn btn-outline-secondary">삭제</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination" style="justify-content: center;" id="pagination">
+            </ul>
+        </nav>
+    </div>
+
+    <div class="content-wrapper content-wrapper--with-bg d-none" id="turn">
+        <h1 class="page-title">기수 관리</h1>
+        <div class="page-content">
+            <div class="input-group mb-3" style="width: 30%;margin: 0% 40%;">
+                <div id="turns">
+                    <input type="text" readonly class="form-control" aria-label="기수"
+                           aria-describedby="basic-addon2" id="TurnTitle" value="${name['turn']}">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" onclick="modifyTurn()">수정</button>
+                        <button class="btn btn-outline-secondary" type="button" onclick="deleteTurn()">삭제</button>
+                        <!--저장을 누르지 않고 나가도 알아서 저장이 되게 해야한다.-->
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button class="btn btn-outline-secondary" style="width: 20%;margin: 0% 40%;" type="button"
+                        onclick="addTurn()">
+                    새 기수 생성
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-wrapper content-wrapper--with-bg d-none" id="time">
+        <h1 class="page-title">발제, 타임어택 모음</h1>
+        <div style="display: block">
+            <div class="col-4" style="float:left;">
+                <span>기수 선택</span>
+                <select class="custom-select col-2" id="turnUrlSelect">
+                    <option value="2">1</option>
+                    <option value="2">2</option>
+                </select>
+            </div>
+            <div class="input-group col-2" style="float: right">
+                <input id="url-search" class="form-control" placeholder="키워드">
+                <button type="button" class="btn btn-primary" onclick="userSearch()">검색</button>
+            </div>
+        </div>
+        <br><br>
+        <div class="page-content">
+            <div id="PRESENTATIONSection">
+
+            </div>
+            <div>
+                <button class="btn btn-outline-secondary" style="width: 35%; margin: 0% 30%;" type="button"
+                        onclick="addPre()">새 발제 추가
+                </button>
+            </div>
+        </div>
+        <div class="page-content">
+            <div id="TIMEATTACKSection">
+
+            </div>
+            <div>
+                <button class="btn btn-outline-secondary" style="width: 35%; margin: 0% 30%;" type="button"
+                        onclick="addTimeAttack()">타임어택 추가
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-wrapper content-wrapper--with-bg " id="board">
+        <h1 class="page-title">자유게시판 관리</h1>
+        <div style="display: block">
+            <div class="col-4" style="float:left;">
+                <span>기수 선택</span>
+                <select class="custom-select col-2" id="turnBoardSelect">
+                    <option value="2">1</option>
+                    <option value="2">2</option>
+                </select>
+            </div>
+            <div class="input-group col-2" style="float: right">
+                <input id="board-search" class="form-control" placeholder="이름">
+                <button type="button" class="btn btn-primary" onclick="userSearch()">검색</button>
+            </div>
+        </div>
+        <br><br>
+        <div class="page-content">
+
+        </div>
     </div>
 </main>
 </html>
