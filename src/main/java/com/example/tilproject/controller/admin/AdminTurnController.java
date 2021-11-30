@@ -19,35 +19,27 @@ public class AdminTurnController {
 
     private final AdminTurnService adminTurnService;
 
-//    기수별 사용자 정보 불러오기, 페이징
-//    @GetMapping("turn/{turn}")
-//    public List<User> userListReturn(@PathVariable String turn){
-//
-//
-//        return null;
-//    }
-
     @GetMapping("turn")
     public Result getTurns(){
         List<TurnDto> turnDtos = adminTurnService.getTurn();
-
         return new Result(turnDtos);
     }
 
     @PostMapping("turn/{turnName}")
     public Long createTurn(@PathVariable String turnName){
         log.info("new turnName log = {}", turnName);
+
         TurnRequestDto turnRequestDto = new TurnRequestDto(turnName);
         return adminTurnService.createTurn(turnRequestDto);
     }
 
-    @PutMapping("/turn")
+    @PutMapping("turn")
     public Long updateTurn(@RequestBody TurnModifyDto turnModifyDto){
 
         return adminTurnService.modifyTurn(turnModifyDto);
     }
 
-    @DeleteMapping("/turn/{turnName}")
+    @DeleteMapping("turn/{turnName}")
     public String deleteTurn(@PathVariable String turnName){
         log.info("delete turn = {}", turnName);
         return adminTurnService.deleteTurn(turnName);

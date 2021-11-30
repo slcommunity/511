@@ -49,7 +49,7 @@
         <nav class="c-menu js-menu">
             <ul class="u-list">
                 <li class="c-menu__item" id="user-tag" data-toggle="tooltip" title="Flights">
-                    <div class="c-menu__item__inner t_color" onclick="setListType('user')">사용자 관리
+                    <div class="c-menu__item__inner t_color" onclick="setListType('user'); showByTurn(1);">사용자 관리
                     </div>
                 </li>
                 <li class="c-menu__item has-submenu" id="turn-tag" data-toggle="tooltip" title="Modules">
@@ -57,7 +57,8 @@
                     </div>
                 </li>
                 <li class="c-menu__item has-submenu" id="time-tag" data-toggle="tooltip" title="Statistics">
-                    <div class="c-menu__item__inner t_color" onclick="setListType('time'); showUrlsByTurn(); showUrls(perPage);">발제,타임어택
+                    <div class="c-menu__item__inner t_color"
+                         onclick="setListType('time'); showByTurn(2); showUrls(turnInfo);">발제,타임어택
                     </div>
                 </li>
                 <li class="c-menu__item has-submenu" id="board-tag" data-toggle="tooltip" title="Gifts">
@@ -82,7 +83,7 @@
                 </select>
             </div>
             <div class="input-group col-2" style="float: right">
-                <input id="user-search" class="form-control" placeholder="이름">
+                <input id="user-search" class="form-control" id="serachUser" placeholder="이름">
                 <button type="button" class="btn btn-primary" onclick="userSearch()">검색</button>
             </div>
         </div>
@@ -92,17 +93,17 @@
                 <thead>
                 <tr>
                     <th scope="col">#</th>
+                    <th scope="col">이름</th>
                     <th scope="col">ID</th>
                     <th scope="col">블로그 URL</th>
                     <th scope="col">Github 주소</th>
-                    <th scope="col">e-mail</th>
                     <th scope="col">최근 접속 시간</th>
                     <th scope="col">댓글 현황</th>
                     <th scope="col">TIL 현황</th>
                     <th scope="col">사용자 삭제</th>
                 </tr>
                 </thead>
-                <tbody id="list-post">
+                <tbody id="list-user">
                 <tr>
                     <td>1</td>
                     <td>ID</td>
@@ -119,6 +120,10 @@
                 </tbody>
             </table>
         </div>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination" style="justify-content: center;" id="pagination">
+            </ul>
+        </nav>
     </div>
 
     <div class="content-wrapper content-wrapper--with-bg d-none" id="turn">
@@ -162,27 +167,17 @@
         <br><br>
         <div class="page-content">
             <div id="PRESENTATIONSection">
-                <div class="input-group mb-3" style="width: 40%; margin: 0% 30%;">
-                    <input type="text" class="form-control" placeholder="제목">
-                    <input type="text" class="form-control" placeholder="url">
-                    <button class="btn btn-outline-secondary" type="button" onclick="modifyPresentation()">수정</button>
-                    <button class="btn btn-outline-secondary" type="button" onclick="deletePresentation()">삭제</button>
-                </div>
+
             </div>
             <div>
                 <button class="btn btn-outline-secondary" style="width: 35%; margin: 0% 30%;" type="button"
-                        onclick="addUrl()">새 발제 추가
+                        onclick="addPre()">새 발제 추가
                 </button>
             </div>
         </div>
         <div class="page-content">
             <div id="TIMEATTACKSection">
-                <div class="input-group mb-3" style="width: 40%; margin: 0% 30%;">
-                    <input type="text" class="form-control" placeholder="타임어택 일자">
-                    <input type="text" class="form-control" placeholder="타임어택 url">
-                    <button class="btn btn-outline-secondary" type="button" onclick="modifyTimeAttack()">수정</button>
-                    <button class="btn btn-outline-secondary" type="button" onclick="deleteTimeAttack()">삭제</button>
-                </div>
+
             </div>
             <div>
                 <button class="btn btn-outline-secondary" style="width: 35%; margin: 0% 30%;" type="button"

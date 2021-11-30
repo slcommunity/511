@@ -23,6 +23,7 @@ public class User extends Timestamped{
     @Enumerated(value = EnumType.STRING)
     private UserRole role;
     private String name;
+    private String blog;
     private String github;
     private String turn;
     private String image;
