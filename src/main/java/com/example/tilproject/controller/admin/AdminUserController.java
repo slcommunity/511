@@ -17,11 +17,13 @@ public class AdminUserController {
 
     @GetMapping("user")
     public PagingResult getUsers(@ModelAttribute UserPagingRequestDto userPagingRequestDto) {
-        log.info("{} {}", userPagingRequestDto.getCurPage(), userPagingRequestDto.getUserTurnInfo());
-
-        PagingResult pagingResult = adminUserService.getUserList(userPagingRequestDto);
-
-        return pagingResult;
+        log.info("page {} turn {} word {}", userPagingRequestDto.getCurPage(), userPagingRequestDto.getUserTurnInfo(), userPagingRequestDto.getSearchWord());
+        if(!userPagingRequestDto.getSearchWord().equals("")) {
+            return adminUserService.getUserSearch(userPagingRequestDto.getSearchWord());
+        }else{
+            PagingResult pagingResult = adminUserService.getUserList(userPagingRequestDto);
+            return pagingResult;
+        }
     }
 
 

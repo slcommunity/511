@@ -91,10 +91,11 @@ function setListType(type) {
 }
 
 function showUsers(curPage) {
-    let searchTitle = $("#searchUser");
+    let searchTitle = $("#searchUser").val();
+    console.log(searchTitle);
     $.ajax({
         type: "GET",
-        url: `/admin/user?userTurnInfo=${userTurnInfo}&curPage=${curPage}`,
+        url: `/admin/user?userTurnInfo=${userTurnInfo}&curPage=${curPage}&searchWord=${searchTitle}`,
         success: function (response) {
             $('#list-user').empty();
             for (let i = 0; i < response.data.length; i++) {
@@ -103,6 +104,10 @@ function showUsers(curPage) {
             makePages(response.count);
         }
     })
+}
+
+function searchingName(){
+    showUsers(1);
 }
 
 

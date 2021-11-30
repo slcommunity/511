@@ -11,9 +11,4 @@ public class UserPagingRequestDto {
     private Integer curPage;
     private String searchWord;
 
-    UserPagingRequestDto(String userTurnInfo, Integer curPage){
-        this.userTurnInfo = userTurnInfo;
-        this.curPage = curPage;
-        this.searchWord = "default";
-    }
 }

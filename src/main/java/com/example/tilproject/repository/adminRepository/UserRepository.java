@@ -12,4 +12,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Page<User> findAllByTurn(String turn, Pageable pageable);
 
     Optional<User> findByUserId(String userId);
+
+    List<User> findByNameContaining(String searchName);
 }
