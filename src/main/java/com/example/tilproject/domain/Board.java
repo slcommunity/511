@@ -21,7 +21,7 @@ public class Board extends Timestamped{
     private String content;
 
     @JsonIgnoreProperties({"boards"})
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "username")
     @ManyToOne
     private User user;
 

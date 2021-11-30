@@ -27,9 +27,8 @@ function register(){
         name : $("#name").val(),
         blog : $("#blog").val(),
         github : $("#github").val(),
-        turn : $("#turn").val()
+        turn : $("#turn option:selected").text()
     }
-
     $.ajax({
         type: 'POST',
         url: `/signup`,
