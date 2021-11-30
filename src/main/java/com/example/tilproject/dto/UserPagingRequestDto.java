@@ -1,7 +1,6 @@
 package com.example.tilproject.dto;
 
 import lombok.*;
-import org.springframework.web.bind.annotation.GetMapping;
 
 @Getter
 @Setter

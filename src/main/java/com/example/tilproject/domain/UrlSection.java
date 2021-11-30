@@ -7,8 +7,4 @@ import java.util.Locale;
 public enum UrlSection {
     PRESENTATION, TIMEATTACK;
 
-//    @JsonCreator
-//    public static UrlSection from(String s){
-//        return UrlSection.valueOf(s.toUpperCase());
-//    }
 }

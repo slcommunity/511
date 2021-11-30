@@ -24,10 +24,6 @@ public class AdminUserController {
         return pagingResult;
     }
 
-//    @GetMapping("users")
-//    public List<User> getusers2(@ModelAttribute UserPagingRequestDto userPagingRequestDto){
-//        return adminUserService.getUser(userPagingRequestDto);
-//    }
 
     @DeleteMapping("user/{userId}")
     public String deleteUser(@PathVariable String userId){
