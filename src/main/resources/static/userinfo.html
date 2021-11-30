@@ -35,6 +35,8 @@
                             <li><a class="dropdown-item" onclick="logout()">로그아웃</a></li>`
             }
             $("#user-dropdown").append(temphtml)
+            $("#userInfo").removeClass("far")
+            $("#userInfo").addClass("fas")
         });
 
         $(document).ready(function () {
@@ -49,9 +51,9 @@
                         $("#preview-image").attr('src', response['image'])
                     }
                     $("#id").attr('value', response['username'])
-                    $("#name").attr('placeholder', response['name'])
-                    $("#blog").attr('placeholder', response['blog'])
-                    $("#github").attr('placeholder', response['github'])
+                    $("#name").attr('value', response['name'])
+                    $("#blog").attr('value', response['blog'])
+                    $("#github").attr('value', response['github'])
                 }
             })
         });
