@@ -28,7 +28,7 @@ public class AdminUserService {
         Pageable pageable = PageRequest.of(userPagingRequestDto.getCurPage()-1, BLOCK_PAGE_NUM_COUNT);
         Page<User> users = userRepository.findAllByTurn(userPagingRequestDto.getUserTurnInfo(), pageable);
         List<UserGetDto> userGetDto = users.stream()
-                .map(m -> new UserGetDto(m.getUserId(), m.getName(), m.getBlog(), m.getGithub()))
+                .map(m -> new UserGetDto(m.getUsername(), m.getName(), m.getBlog(), m.getGithub()))
                 .collect(Collectors.toList());
         return new PagingResult(userGetDto, users.getTotalPages());
     }
@@ -38,7 +38,7 @@ public class AdminUserService {
         if(users == null) throw new IllegalArgumentException("해당하는 이름이 없습니다.");
         else{
             List<UserGetDto> userGetDto = users.stream()
-                    .map(m -> new UserGetDto(m.getUserId(), m.getName(), m.getBlog(), m.getGithub()))
+                    .map(m -> new UserGetDto(m.getUsername(), m.getName(), m.getBlog(), m.getGithub()))
                     .collect(Collectors.toList());
             return new PagingResult(userGetDto, 1);
         }
@@ -46,7 +46,7 @@ public class AdminUserService {
 
 
     public String deleteUser(String userId) {
-        User user = userRepository.findByUserId(userId).get();
+        User user = userRepository.findByUsername(userId).get();
         userRepository.delete(user);
         return user.getName();
     }
