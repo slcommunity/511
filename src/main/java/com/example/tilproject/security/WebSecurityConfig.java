@@ -41,6 +41,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/static/**.html").permitAll()
                 .antMatchers("/**.html").permitAll()
                 .antMatchers("/users").permitAll()
+                .antMatchers("/first").permitAll()
+                .antMatchers("/search").permitAll()
                 // 그 외 모든 요청은 인증과정 필요
                 .anyRequest().authenticated()
                 .and()
