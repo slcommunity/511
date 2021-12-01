@@ -38,7 +38,7 @@ public class User extends Timestamped{
     private String image;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Recent> recents;
+    private List<NewPost> recents;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Board> boards;
