@@ -41,11 +41,9 @@ public class UserApiController {
         String role;
         if(user.getRole() == UserRole.ADMIN) {
             role = "admin";
-            System.out.println("난 어드민");
         }
         else {
             role = "user";
-            System.out.println("난 유저");
         }
         return ResponseEntity.ok(new AdminResponse(token, userDetails.getUsername(), role));
     }
