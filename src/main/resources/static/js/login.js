@@ -12,7 +12,12 @@ function login() {
         success: function (response) {
             localStorage.setItem("token", response['token']);
             localStorage.setItem("userId", response['username']);
-            location.href = '/index.html';
+            if(response['role'] === "user"){
+                location.href = '/index.html';
+            }
+            else{
+                location.href = '/admin.html'
+            }
         },
         error: function (response) {
             alert("로그인이 불가합니다." + response.responseJSON.error)

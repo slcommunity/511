@@ -1,6 +1,8 @@
 package com.example.tilproject.controller;
 
 import com.example.tilproject.domain.User;
+import com.example.tilproject.domain.UserRole;
+import com.example.tilproject.dto.AdminResponse;
 import com.example.tilproject.dto.JwtResponse;
 import com.example.tilproject.dto.SignupRequestDto;
 import com.example.tilproject.dto.UserDto;
@@ -35,7 +37,17 @@ public class UserApiController {
         authenticate(userDto.getUsername(), userDto.getPassword());
         final UserDetails userDetails = userDetailsService.loadUserByUsername(userDto.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails);
-        return ResponseEntity.ok(new JwtResponse(token, userDetails.getUsername()));
+        User user = userService.searchUser(userDetails.getUsername());
+        String role;
+        if(user.getRole() == UserRole.ADMIN) {
+            role = "admin";
+            System.out.println("난 어드민");
+        }
+        else {
+            role = "user";
+            System.out.println("난 유저");
+        }
+        return ResponseEntity.ok(new AdminResponse(token, userDetails.getUsername(), role));
     }
 
     @PostMapping(value = "/signup")
