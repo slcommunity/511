@@ -22,35 +22,39 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
     private final JwtAuthenticationFilter jwtRequestFilter;
+    private final AdminAccessHandler adminAccessHandler;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.headers().frameOptions().disable();
-        http.authorizeRequests()
-                // image 폴더를 login 없이 허용
-                .antMatchers("/image/**").permitAll()
-                // css 폴더를 login 없이 허용
-                .antMatchers("/css/**").permitAll()
-                .antMatchers("/userInfo/**").permitAll()
-                .antMatchers("/h2-console/**").permitAll()
-                .antMatchers("/sign-in").permitAll()
-                .antMatchers("/").permitAll()
-                .antMatchers("/js/**.js").permitAll()
-                .antMatchers("/signup").permitAll()
-                .antMatchers("/static/**.html").permitAll()
-                .antMatchers("/**.html").permitAll()
-                .antMatchers("/users").permitAll()
-                .antMatchers("/admin/**").permitAll()
-                .antMatchers("/roles").permitAll()
-                // 그 외 모든 요청은 인증과정 필요
-                .anyRequest().authenticated()
-                .and()
+        http
+//                .authorizeRequests()
+//                // image 폴더를 login 없이 허용
+//                .antMatchers("/image/**").permitAll()
+//                // css 폴더를 login 없이 허용
+//                .antMatchers("/css/**").permitAll()
+//                .antMatchers("/userInfo/**").permitAll()
+//                .antMatchers("/h2-console/**").permitAll()
+//                .antMatchers("/sign-in").permitAll()
+//                .antMatchers("/").permitAll()
+//                .antMatchers("/js/**.js").permitAll()
+//                .antMatchers("/signup").permitAll()
+//                .antMatchers("/static/**.html").permitAll()
+//                .antMatchers("/**.html").permitAll()
+//                .antMatchers("/users").permitAll()
+//                .antMatchers("/admin/**").permitAll()
+//                .antMatchers("/roles").permitAll()
+//                // 그 외 모든 요청은 인증과정 필요
+//                .anyRequest().authenticated()
+//                .and()
                 .exceptionHandling()
                 .authenticationEntryPoint(jwtAuthenticationEntryPoint)
                 .and()
                 .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .exceptionHandling().accessDeniedHandler(adminAccessHandler);
 
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }

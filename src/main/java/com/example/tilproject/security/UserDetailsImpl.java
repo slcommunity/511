@@ -55,7 +55,7 @@ public class UserDetailsImpl implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         UserRole userRole = user.getRole();
-
+        System.out.println(userRole.toString() + " 로그인 중");
         SimpleGrantedAuthority authority = new SimpleGrantedAuthority(ROLE_PREFIX + userRole.toString());
         Collection<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(authority);
