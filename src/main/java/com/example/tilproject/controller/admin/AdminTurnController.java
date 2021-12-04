@@ -1,6 +1,6 @@
 package com.example.tilproject.controller.admin;
 
-import com.example.tilproject.dto.TurnDto;
+import com.example.tilproject.dto.TurnsGetDto;
 import com.example.tilproject.dto.TurnModifyDto;
 import com.example.tilproject.dto.TurnRequestDto;
 import com.example.tilproject.service.adminService.AdminTurnService;
@@ -21,7 +21,7 @@ public class AdminTurnController {
 
     @GetMapping("turn")
     public Result getTurns(){
-        List<TurnDto> turnDtos = adminTurnService.getTurn();
+        List<TurnsGetDto> turnDtos = adminTurnService.getTurn();
         return new Result(turnDtos);
     }
 

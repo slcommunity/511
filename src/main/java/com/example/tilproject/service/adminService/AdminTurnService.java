@@ -1,7 +1,7 @@
 package com.example.tilproject.service.adminService;
 
+import com.example.tilproject.dto.TurnsGetDto;
 import com.example.tilproject.domain.Turn;
-import com.example.tilproject.dto.TurnDto;
 import com.example.tilproject.dto.TurnModifyDto;
 import com.example.tilproject.dto.TurnRequestDto;
 import com.example.tilproject.repository.adminRepository.TurnRepository;
@@ -20,12 +20,12 @@ public class AdminTurnService {
     private final TurnRepository turnRepository;
     private final UserRepository userRepository;
 
-    public List<TurnDto> getTurn(){
+    public List<TurnsGetDto> getTurn(){
         List<Turn> turns = turnRepository.findAll();
-        List<TurnDto> turnDtos = turns.stream()
-                .map(m -> new TurnDto(m.getTurn()))
+        List<TurnsGetDto> turnsGetDtos = turns.stream()
+                .map(m -> new TurnsGetDto(m.getTurn()))
                 .collect(Collectors.toList());
-        return turnDtos;
+        return turnsGetDtos;
     }
 
     @Transactional

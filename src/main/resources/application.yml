@@ -25,7 +25,12 @@ spring:
       ddl-auto: update #create update none, 처음엔 create, 그 다음부턴 update를 하셔야 DB refresh가 안돼요
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-    show-sql: true
+
+    properties:
+      hibernate:
+        show-sql: true
+        format_sql: true
+        default_batch_fetch_size: 1000
 
   servlet:
     multipart:
@@ -46,3 +51,6 @@ logging:
       amazonaws:
         util:
           EC2MetadataUtils: error
+    org:
+      hibernate:
+        SQL: debug
