@@ -45,7 +45,6 @@ public class UserService {
         String blog = requestDto.getBlog();
         String github = requestDto.getGithub();
         Turn turn = turnRepository.findByTurn(requestDto.getTurn());
-        System.out.println(turn.getTurn() + turn.getIdx());
 
 //        String image = requestDto.getImage();
         String image = null;

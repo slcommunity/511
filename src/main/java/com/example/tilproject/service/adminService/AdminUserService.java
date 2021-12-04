@@ -29,7 +29,6 @@ public class AdminUserService {
 
     public PagingResult getUserList(UserPagingRequestDto userPagingRequestDto) {
         Turn turn = turnRepository.findByTurn(userPagingRequestDto.getUserTurnInfo());
-        log.info("{}",turn.getIdx());
         Pageable pageable = PageRequest.of(userPagingRequestDto.getCurPage()-1, BLOCK_PAGE_NUM_COUNT);
         Page<User> users = userRepository.findAllByTurn(turn, pageable);
 

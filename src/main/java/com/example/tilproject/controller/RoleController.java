@@ -20,10 +20,14 @@ public class RoleController {
             role = "user";
         }else{
             User user = userService.searchUser(userId);
-            if(user.getRole() == UserRole.ADMIN)
-                role = "admin";
-            else
+            if(user == null){
                 role = "user";
+            }else {
+                if (user.getRole() == UserRole.ADMIN)
+                    role = "admin";
+                else
+                    role = "user";
+            }
         }
         return role;
     }
