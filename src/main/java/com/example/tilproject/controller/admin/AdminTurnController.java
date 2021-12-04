@@ -1,6 +1,6 @@
 package com.example.tilproject.controller.admin;
 
-import com.example.tilproject.dto.TurnDto;
+import com.example.tilproject.dto.TurnsGetDto;
 import com.example.tilproject.dto.TurnModifyDto;
 import com.example.tilproject.dto.TurnRequestDto;
 import com.example.tilproject.security.UserDetailsImpl;
@@ -25,8 +25,8 @@ public class AdminTurnController {
 
     @Secured("ROLE_ADMIN")
     @GetMapping("turn")
-    public Result getTurns(@AuthenticationPrincipal UserDetailsImpl userDetails){
-        List<TurnDto> turnDtos = adminTurnService.getTurn();
+    public Result getTurns(){
+        List<TurnsGetDto> turnDtos = adminTurnService.getTurn();
         return new Result(turnDtos);
     }
 

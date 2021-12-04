@@ -1,3 +1,7 @@
+$(document).ready(function () {
+    loginTurn();
+});
+
 function login() {
     let info = {
         username: $("#user").val(),
@@ -25,14 +29,14 @@ function login() {
     })
 }
 
-function register(){
+function register() {
     let info = {
         username: $("#userID").val(),
         password: $("#password").val(),
-        name : $("#name").val(),
-        blog : $("#blog").val(),
-        github : $("#github").val(),
-        turn : $("#turn option:selected").text()
+        name: $("#name").val(),
+        blog: $("#blog").val(),
+        github: $("#github").val(),
+        turn: $("#turnSelect option:selected").text()
     }
     $.ajax({
         type: 'POST',
@@ -46,4 +50,24 @@ function register(){
             alert("회원가입이 불가합니다." + response.responseJSON.error)
         },
     })
+}
+
+function loginTurn() {
+    $.ajax({
+        type: "GET",
+        url: `/admin/turn`,
+        success: function (response) {
+            let list = response.data;
+            $("#turnSelect").empty();
+            for (let i = 0; i < list.length; i++) {
+                callTurns(list[i]);
+
+            }
+        }
+    })
+}
+
+function callTurns(value) {
+    let tempHtml = `<option value="${value['turn']}">${value['turn']}</option>`;
+    $("#turnSelect").append(tempHtml);
 }

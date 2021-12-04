@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -19,6 +21,9 @@ public class Turn {
 
     @Column(nullable = false)
     private String turn;
+
+    @OneToMany(mappedBy = "turn", fetch = FetchType.LAZY)
+    List<User> users = new ArrayList<User>();
 
     public Turn(TurnRequestDto requestDto){
         if (requestDto.getTurnName() == null || requestDto.getTurnName().isEmpty())

@@ -151,4 +151,8 @@ gradlew
 gradlew.bat
 settings.gradle
 
+<<<<<<< HEAD
 aws.yml
+=======
+aws.yml
+>>>>>>> 66212457513e2b8c967f3ab7fbae8253e1734740

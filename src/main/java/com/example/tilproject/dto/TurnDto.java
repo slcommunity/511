@@ -1,13 +1,22 @@
 package com.example.tilproject.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.example.tilproject.domain.Turn;
+import lombok.Data;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Data
 public class TurnDto {
-
+    private Long idx;
     private String turn;
+    private List<UserGetDto> users;
+
+    public TurnDto(Turn turn) {
+        this.idx = turn.getIdx();
+        this.turn = turn.getTurn();
+        this.users = turn.getUsers().stream()
+                .map(user -> new UserGetDto(user))
+                .collect(Collectors.toList());
+    }
 }

@@ -1,5 +1,6 @@
 package com.example.tilproject.dto;
 
+import com.example.tilproject.domain.Turn;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;

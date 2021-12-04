@@ -2,14 +2,15 @@ let order = "asc";
 let userPage = "1기";
 let userTurnInfo = "1기"
 let turnInfo = "1기";//수정 필요
-let urlTurnInfo = "1기";//수정 필요
 let listType = "all";
 let curPage = 1;
+let searchTitle = "";
 
 $(document).ready(function () {
     setListType('user');
     showByTurn(1);
     showUsers(1);
+
     // showArticles(1);
     $("#turnUrlSelect").change(function () {
         turnInfo = $(this).val();
@@ -18,6 +19,7 @@ $(document).ready(function () {
 
     $("#turnUserSelect").change(function () {
         userTurnInfo = $(this).val();
+        searchTitle = "";
         showUsers(1);
     })
 });
@@ -91,8 +93,6 @@ function setListType(type) {
 }
 
 function showUsers(curPage) {
-    let searchTitle = $("#searchUser").val();
-    console.log(searchTitle);
     $.ajax({
         type: "GET",
         url: `/admin/user?userTurnInfo=${userTurnInfo}&curPage=${curPage}&searchWord=${searchTitle}`,
@@ -107,12 +107,12 @@ function showUsers(curPage) {
 }
 
 function searchingName(){
+    searchTitle = $("#searchUser").val();
     showUsers(1);
 }
 
 
 function makePages(count) {
-    console.log(count);
     let tempHtml = ``;
     for(let i = 0; i < count; i++){
         if(i + 1 == curPage){
@@ -127,7 +127,7 @@ function makePages(count) {
 }
 
 function makeUsers(data, idx) {
-    let userId = data.userId;
+    let userId = data.userName;
     let name = data.name;
     let blog = data.blog;
     let github = data.github;
@@ -260,7 +260,6 @@ function addTurn() {
 
 //왼쪽 탭 클릭시 모달에 기수 데이터 넣기
 function showByTurn(turn) {
-    console.log(turn);
     $.ajax({
         type: "GET",
         url: `/admin/turn`,
@@ -283,13 +282,11 @@ function showByTurn(turn) {
 
 //기수 데이터 html
 function callUrlsInTurn(value) {
-    console.log(value);
     let tempHtml = `<option value="${value['turn']}">${value['turn']}</option>`;
     $("#turnUrlSelect").append(tempHtml);
 }
 
 function callUsersInTurn(value) {
-    console.log(value);
     let tempHtml = `<option value="${value['turn']}">${value['turn']}</option>`;
     $("#turnUserSelect").append(tempHtml);
 }
@@ -333,12 +330,10 @@ function modifyUrl(url, urlName, urlSection, turn) {
                         </div>
                     </div>`;
     let tag = '#' + urlSection + '-' + urlName;
-    console.log(tag);
     $(tag).html(tempHtml);
 }
 
 function deleteUrl(url, urlName, urlSection, turn) {
-    console.log(url + urlName + urlSection + turn);
     $.ajax({
         type: "DELETE",
         url: `/admin/url?urlName=${urlName}&url=${url}&turn=${turn}&urlSection=${urlSection}`,
@@ -365,7 +360,7 @@ function completeModifyUrl(url, urlName, urlSection, turn) {
         }
         $.ajax({
             type: "POST",
-            url: `/admin/url?url=${toUrl2}&urlName=${toUrlName2}&turn=${urlTurnInfo}&urlSection=${urlSection}`,
+            url: `/admin/url?url=${toUrl2}&urlName=${toUrlName2}&turn=${turnInfo}&urlSection=${urlSection}`,
             success: function (response) {
                 showUrls(turnInfo);
             }
@@ -389,7 +384,7 @@ function addPre() {
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary" type="button" onclick="completeModifyUrl('PNew')">완료</button>
                         </div>
-                    </div>\``;
+                    </div>`;
     $("#PRESENTATIONSection").append(tempHtml);
 }
 
@@ -400,7 +395,7 @@ function addTimeAttack() {
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary" type="button" onclick="completeModifyUrl('TNew')">완료</button>
                         </div>
-                    </div>\``;
+                    </div>`;
     $("#TIMEATTACKSection").append(tempHtml);
 }
 
