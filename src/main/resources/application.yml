@@ -15,9 +15,9 @@ spring:
   datasource:
     hikari:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      jdbc-url: jdbc:mysql://localhost:3306/test?serverTimezone=Asia/Seoul
-      username: cos
-      password: cos1234 #DB ID, 비밀번호는 본인거 넣으시면 돼요
+      jdbc-url: jdbc:mysql://localhost:3306/til?serverTimezone=Asia/Seoul
+      username: user
+      password: 1234 #DB ID, 비밀번호는 본인거 넣으시면 돼요
 
   jpa:
     open-in-view: true #open-in-view가 false로 잡혀있으면 세션이 Service와 Controller 사이에서 종료된다.

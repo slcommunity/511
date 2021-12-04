@@ -18,19 +18,25 @@ public class NewPost{
     @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false)
-    private String content;
+    @Column(nullable = true)
+    private String summary;
+
+    @Column(nullable = true)
+    private String imageUrl;
 
     @Column(nullable = false)
-    private String blogUrl;
+    private String postLink;
 
-    private String github;
-
-    @Column(nullable = false)
-    private String turn;
-
-    @JsonIgnoreProperties({"recents"})
-    @JoinColumn(name = "userId")
+    @JsonIgnoreProperties({"newPosts"})
+    @JoinColumn(name = "username")
     @ManyToOne
     private User user;
+
+    public NewPost(String title, String summary, String imageUrl, String postLink, User user) {
+        this.title = title;
+        this.summary = summary;
+        this.imageUrl = imageUrl;
+        this.postLink = postLink;
+        this.user = user;
+    }
 }

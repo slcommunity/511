@@ -24,6 +24,18 @@
             $("#footer").load("footer.html");
 
         });
+
+        $(document).ready(function () {
+            $.ajax({
+                type: "POST",
+                url: "/roles",
+                data: {"userId": localStorage.getItem("userId")},
+                success: function (response) { // 성공하면
+                    if(response === "admin")
+                        location.href = "/admin.html"
+                }
+            })
+        });
     </script>
 </head>
 <body id="page-top">
