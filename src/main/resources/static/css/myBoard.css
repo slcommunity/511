@@ -1,9 +1,9 @@
 
 h1{
-    font-size: 30px;
+    font-size: 40px;
     color: #000000;
     text-transform: uppercase;
-    font-weight: 300;
+    font-weight: bold;
     text-align: center;
     margin-bottom: 15px;
 }
@@ -23,9 +23,9 @@ table{
 th{
     padding: 20px 15px;
     text-align: left;
-    font-weight: 500;
-    font-size: 12px;
-    color: #000000;
+    font-size: 15px;
+    font-weight: bold;
+    color: #ffffff;
     text-transform: uppercase;
 }
 td{
@@ -47,8 +47,8 @@ body{
     font-family: 'Roboto', sans-serif;
 }
 section{
-    margin-left: 5rem;
-    margin-right: 5rem;
+    margin-left: 10rem;
+    margin-right: 10rem;
 }
 
 

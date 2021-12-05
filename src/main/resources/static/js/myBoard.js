@@ -27,10 +27,9 @@ $(document).ready(function () {
 function makeTable(board){
     let temphtml = `<tr>
                         <td>${board['idx']}</td>
-                        <td class="title">${board['title']}</td>
+                        <td class="title" onclick="location.href='test.html'">${board['title']}</td>
                         <td>${board['content']}</td>
                         <td>${board['createdAt']}</td>
-                        <td>수정</td>
                         <td>삭제</td>
                     </tr>`
     $("#boardList").append(temphtml)
