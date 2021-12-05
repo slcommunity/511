@@ -115,6 +115,12 @@ function callTurns(value) {
 
 function check(){
     let userId = $("#userID").val()
+
+    if(userId == null){
+        alert("ID를 입력해주세요.")
+        return;
+    }
+
     $.ajax({
         type: "GET",
         url: `/user/check/${userId}`,
