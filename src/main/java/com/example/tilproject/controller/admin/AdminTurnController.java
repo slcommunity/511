@@ -23,7 +23,6 @@ public class AdminTurnController {
 
     private final AdminTurnService adminTurnService;
 
-    @Secured("ROLE_ADMIN")
     @GetMapping("turn")
     public Result getTurns(){
         List<TurnsGetDto> turnDtos = adminTurnService.getTurn();

@@ -81,4 +81,14 @@ public class UserApiController {
             throw new Exception("INVALID_CREDENTIALS", e);
         }
     }
+
+    @GetMapping(value = "/user/check/{username}")
+    public String getUser(@PathVariable String username){
+        User user = userService.searchUser(username);
+        if(user == null){
+            return "ok";
+        }else{
+            return "no";
+        }
+    }
 }
