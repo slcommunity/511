@@ -12,10 +12,10 @@ table{
     table-layout: fixed;
 }
 .tbl-header{
-    background-color: rgba(255,255,255,0.3);
+    background: -webkit-linear-gradient(left, #25c481, #25b7c4);
 }
 .tbl-content{
-    height:300px;
+    height:500px;
     overflow-x:auto;
     margin-top: 0px;
     border: 1px solid rgba(255,255,255,0.3);
@@ -47,7 +47,8 @@ body{
     font-family: 'Roboto', sans-serif;
 }
 section{
-    margin: 50px;
+    margin-left: 5rem;
+    margin-right: 5rem;
 }
 
 
