@@ -19,7 +19,7 @@ public class BoardController {
     private final BoardService boardService;
 
     @GetMapping(value = "/my-boards")
-    public List<BoardResponseDto> searchBoards(@AuthenticationPrincipal UserDetailsImpl userDetails){
+    public List<BoardResponseDto> getMyBoards(@AuthenticationPrincipal UserDetailsImpl userDetails){
         User user = userDetails.getUser();
         return boardService.searchBoards(user);
     }
