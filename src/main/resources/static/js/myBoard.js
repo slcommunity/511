@@ -3,3 +3,35 @@ $(window).on("load resize ", function() {
     var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
     $('.tbl-header').css({'padding-right':scrollWidth});
 }).resize();
+
+$(document).ready(function () {
+    $.ajax({
+        type: "GET",
+        url: `/my-boards`,
+        processData: false, // 필수
+        contentType: false, // 필수
+        cache: false,
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token'));
+        },
+        success: function (response) {
+            for (let i = 0; i < response.length; i++) {
+                let board = response[i]
+                console.log(board)
+                makeTable(board)
+            }
+        }
+    })
+});
+
+function makeTable(board){
+    let temphtml = `<tr>
+                        <td>${board['idx']}</td>
+                        <td class="title">${board['title']}</td>
+                        <td>${board['content']}</td>
+                        <td>${board['createdAt']}</td>
+                        <td>수정</td>
+                        <td>삭제</td>
+                    </tr>`
+    $("#boardList").append(temphtml)
+}

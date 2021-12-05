@@ -4,7 +4,7 @@ package com.example.tilproject.utils;
 import com.example.tilproject.domain.NewPost;
 import com.example.tilproject.domain.User;
 import com.example.tilproject.repository.adminRepository.NewPostRepository;
-import com.example.tilproject.repository.adminRepository.UserRepository;
+import com.example.tilproject.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
