@@ -10,4 +10,5 @@ public class SearchResponse {
     private String summary;
     private String imageUrl;
     private String postLink;
+    private String user;
 }

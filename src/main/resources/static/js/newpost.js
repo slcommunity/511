@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    // alert("안농 ٩(｡•ㅅ•｡)و/ / /");
     pageload();
 });
 
@@ -13,7 +12,6 @@ function pageload() {
             $("#postlist").empty();
             for (var i = 0; i < data.length; i++) {
                 let imageUrl = data[i].imageUrl
-                // console.log(data[i]);
                 let temphtml;
                 if(imageUrl === "") {
                     temphtml = `<div class="post">
@@ -67,7 +65,6 @@ function search() {
         data : { searchtext : searchtext,
             selecter : seletOption},
         success: function (data) {
-            console.log(data);
             if (data.length == 0) {
                 alert("검색결과 몰?루");
                 return;

@@ -20,14 +20,6 @@ public class NewPostController {
 
     private final NewpostService newpostService;
 
-    @GetMapping("/newpost")
-    @ResponseBody
-    public ModelAndView index(Model model) {
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("newpost");
-        return mv;
-    }
-
 
     @GetMapping(value = "/postlist")
     @ResponseBody
