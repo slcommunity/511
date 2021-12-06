@@ -21,5 +21,4 @@ public class CommentController {
         User user = userDetails.getUser();
         return commentService.getMyComments(user);
     }
-
 }

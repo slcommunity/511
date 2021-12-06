@@ -93,3 +93,11 @@ section{
 .title{
     width: 800px;
 }
+
+.board-title{
+    width: 300px;
+}
+
+.comment{
+    width: 500px;
+}

@@ -1,5 +1,6 @@
 package com.example.tilproject.service;
 
+import com.example.tilproject.domain.Board;
 import com.example.tilproject.domain.Comment;
 import com.example.tilproject.domain.User;
 import com.example.tilproject.dto.CommentResponseDto;
@@ -21,9 +22,12 @@ public class CommentService {
     public List<CommentResponseDto> getMyComments(User user){
         List<CommentResponseDto> commentResponseDtoList = new LinkedList<>();
         List<Comment> commentList = commentRepository.findByUser(user);
-
-        for (Comment comment : commentList) {
-
+        if(!commentList.isEmpty()) {
+            for (Comment comment : commentList) {
+                Board board = comment.getBoard();
+                CommentResponseDto commentResponseDto = new CommentResponseDto(comment, board, user);
+                commentResponseDtoList.add(commentResponseDto);
+            }
         }
         return commentResponseDtoList;
     }

@@ -24,6 +24,7 @@ $(document).ready(function () {
     })
 });
 
+//상세정보 및 삭제 href 추가 필요
 function makeTable(board){
     let temphtml = `<tr>
                         <td>${board['idx']}</td>
