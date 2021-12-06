@@ -4,13 +4,11 @@ import com.example.tilproject.domain.UrlSection;
 import com.example.tilproject.dto.UrlCreateDeleteDto;
 import com.example.tilproject.dto.UrlModifyDto;
 import com.example.tilproject.dto.UrlTurnDto;
-import com.example.tilproject.security.UserDetailsImpl;
 import com.example.tilproject.service.adminService.AdminUrlService;
 import com.example.tilproject.utils.Result;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,7 +21,6 @@ public class AdminUrlController {
 
     private final AdminUrlService adminUrlService;
 
-    @Secured("ROLE_ADMIN")
     @GetMapping("url/{turn}")
     public Result getUrl(@PathVariable String turn) {
         List<UrlTurnDto> urls = adminUrlService.getUrl(turn);

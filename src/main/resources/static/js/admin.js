@@ -1,8 +1,5 @@
-let order = "asc";
-let userPage = "1기";
 let userTurnInfo = "1기"
-let turnInfo = "1기";//수정 필요
-let listType = "all";
+let turnInfo = "1기";
 let curPage = 1;
 let searchTitle = "";
 
@@ -21,7 +18,7 @@ $(document).ready(function () {
         userTurnInfo = $(this).val();
         searchTitle = "";
         showUsers(1);
-    })
+    });
 });
 
 

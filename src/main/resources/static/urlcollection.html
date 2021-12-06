@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>TIL</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico"/>
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
+          type="text/css"/>
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link href="css/index.css" rel="stylesheet">
+    <link href="css/urlCollection.css" rel="stylesheet">
+    <script src="js/urlCollection.js"></script>
+    <script src="js/logout.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#header").load("header.html");
+            $("#footer").load("footer.html");
+        });
+    </script>
+</head>
+<body id="page-top">
+<!-- Navigation-->
+<div id="header"></div>
+<!-- Portfolio Section-->
+<div>
+    <div style="clear:both"></div>
+</div>
+<div class="col-4" style="margin: 1% 0% 0% 70%;">
+    <span>기수 선택</span>
+    <select class="custom-select col-2" id="turnSelect">
+        <option value="2">1</option>
+        <option value="2">2</option>
+    </select>
+</div>
+<section class="page-section portfolio" id="presentationPort" style="width: 40%; float:left;">
+    <div>
+        <!--for demo wrap-->
+        <h1>발제모음</h1>
+        <div class="tbl-header">
+            <table cellpadding="0" cellspacing="0" border="0">
+                <thead>
+                <tr>
+                    <th>발제</th>
+                    <th>url</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="tbl-content">
+            <table cellpadding="0" cellspacing="0" border="0">
+                <tbody id="presentationCollection">
+                <tr>
+                    <td>AAC</td>
+                    <td>AUSTRALIAN COMPANY</td>
+                </tr>
+                <tr>
+                    <td>AAD</td>
+                    <td>AUSENCO</td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>
+<section class="page-section portfolio" id="timeAttackPort" style="width: 40%; float:left;">
+    <div>
+        <!--for demo wrap-->
+        <h1>타임어택 모음</h1>
+        <div class="tbl-header">
+            <table cellpadding="0" cellspacing="0" border="0">
+                <thead>
+                <tr>
+                    <th>타임어택</th>
+                    <th>url</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="tbl-content">
+            <table cellpadding="0" cellspacing="0" border="0">
+                <tbody id="timeAttackCollection">
+                <tr>
+                    <td>AAC</td>
+                    <td>AUSTRALIAN COMPANY</td>
+                </tr>
+                <tr>
+                    <td>AAD</td>
+                    <td>AUSENCO</td>
+                </tr>
+                <tr>
+                    <td>AAX</td>
+                    <td>ADELAIDE</td>
+                </tr>
+                <tr>
+                    <td>XXD</td>
+                    <td>ADITYA BIRLA</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>
+<div>
+    <div style="clear:both"></div>
+</div>
+<div id="footer"></div>
+</body>
+</html>
