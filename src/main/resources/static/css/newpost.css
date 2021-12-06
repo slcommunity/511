@@ -1,0 +1,142 @@
+.search {
+    width: 100%;
+    position: relative;
+    display: flex;
+    margin-left: 10%;
+}
+
+.searchTerm {
+    width: 70%;
+    border: 3px solid #00B4CC;
+    margin-left: 2%;
+    border-right: none;
+    padding: 5px;
+    height: 36px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    color: #9DBFAF;
+}
+
+.searchTerm:focus{
+    color: #00B4CC;
+}
+
+.searchButton {
+    width: 40px;
+    height: 36px;
+    border: 1px solid #00B4CC;
+    background: #00B4CC;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.page-section {
+    /*text-align: center;*/
+}
+
+.ulclass {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    list-style: none;
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.post {
+    display: flex;
+    width: 70%;
+    height: 300px;
+    margin: 50px auto;
+    box-shadow: 0 5px 15px 0 #777;
+}
+
+.post-date {
+    font-size: 13px;
+    color: #bbb;
+}
+
+.post-author {
+    color: #555;
+}
+
+.post-excerpt {
+    letter-spacing: 1px;
+    line-height: 1.33;
+}
+
+.post-image {
+    position: relative;
+    flex: 0 0 40%;
+    width: auto;
+    max-width: 300px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+img {
+    visibility: visible;
+    width: 80%;
+    height: 100%;
+    position: absolute;
+}
+
+
+
+
+.post-content {
+    flex: 0 0 60%;
+    padding: 20px 30px;
+}
+
+.post-link {
+    display: inline-block;
+    margin: 0 0 15px;
+    padding: 16px 48px;
+    background: lightblue;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4em;
+    transition: background .2s ease-in-out;
+}
+
+/*:hover {*/
+/*     background: darken(lightblue, 10%);*/
+/* }*/
+
+
+@media screen and (max-width: 1024px) {
+    .post {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .post {
+        flex-direction: column;
+    }
+
+    .post-image {
+        height: 270px;
+        max-width: 100%;
+    }
+
+    .post-content {
+    // padding: 20px 0;
+    }
+}
