@@ -1,14 +1,11 @@
 package com.example.tilproject.controller.admin;
 
 import com.example.tilproject.dto.UserPagingRequestDto;
-import com.example.tilproject.security.UserDetailsImpl;
 import com.example.tilproject.service.adminService.AdminUserService;
 import com.example.tilproject.utils.PagingResult;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
