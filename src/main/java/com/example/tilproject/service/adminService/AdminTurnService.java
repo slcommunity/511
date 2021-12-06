@@ -5,7 +5,6 @@ import com.example.tilproject.domain.Turn;
 import com.example.tilproject.dto.TurnModifyDto;
 import com.example.tilproject.dto.TurnRequestDto;
 import com.example.tilproject.repository.adminRepository.TurnRepository;
-import com.example.tilproject.repository.adminRepository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +17,6 @@ import java.util.stream.Collectors;
 public class AdminTurnService {
 
     private final TurnRepository turnRepository;
-    private final UserRepository userRepository;
 
     public List<TurnsGetDto> getTurn(){
         List<Turn> turns = turnRepository.findAll();
@@ -48,11 +46,6 @@ public class AdminTurnService {
             throw new IllegalArgumentException("존재하지 않는 기수입니다.");
         }
         else{
-//            유저, url들의 기수 정보도 바꿔줘야 된다.
-//            List<User> users = userRepository.findAllByUrlTurn(turnModifyDto.getOldTurn())
-//            if(users != null){
-//
-//            }
             turn.setTurn(turnModifyDto.getNewTurn());
             return turn.getIdx();
         }

@@ -2,7 +2,6 @@ package com.example.tilproject.service.adminService;
 
 import com.example.tilproject.domain.Turn;
 import com.example.tilproject.domain.User;
-import com.example.tilproject.dto.TurnDto;
 import com.example.tilproject.dto.UserGetDto;
 import com.example.tilproject.dto.UserPagingRequestDto;
 import com.example.tilproject.repository.adminRepository.TurnRepository;
