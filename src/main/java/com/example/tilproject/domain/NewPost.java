@@ -18,7 +18,7 @@ public class NewPost{
     @Column(nullable = false)
     private String title;
 
-    @Column(nullable = true)
+    @Column(nullable = true, length = 1000)
     private String summary;
 
     @Column(nullable = true)
