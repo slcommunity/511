@@ -19,7 +19,6 @@ public class AdminUserController {
     @Secured("ROLE_ADMIN")
     @GetMapping("user")
     public PagingResult getUsers(@ModelAttribute UserPagingRequestDto userPagingRequestDto) {
-        log.info("page {} turn {} word {}", userPagingRequestDto.getCurPage(), userPagingRequestDto.getUserTurnInfo(), userPagingRequestDto.getSearchWord());
         if(!userPagingRequestDto.getSearchWord().equals("")) {
             return adminUserService.getUserSearch(userPagingRequestDto.getSearchWord());
         }else{

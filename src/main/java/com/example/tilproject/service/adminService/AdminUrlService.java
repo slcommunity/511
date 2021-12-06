@@ -39,7 +39,6 @@ public class AdminUrlService {
 
         url.setUrl(urlModifyDto.getTourl());
         url.setUrlName(urlModifyDto.getTourlname());
-        log.info("url, urlname, turn = {} {} {}", url.getUrl(), url.getUrlName(), url.getUrlTurn());
         return url.getUrlTurn();
     }
 
