@@ -13,7 +13,7 @@ function pageload() {
             $("#postlist").empty();
             for (var i = 0; i < data.length; i++) {
                 let imageUrl = data[i].imageUrl
-                console.log(imageUrl);
+                // console.log(data[i]);
                 let temphtml;
                 if(imageUrl === "") {
                     temphtml = `<div class="post">
@@ -22,6 +22,7 @@ function pageload() {
                                         </div>
                                     <div class="post-content">
                                         <a href="${data[i].postLink}"><h3 class="post-title">${data[i].title}</h3></a>
+                                        <div><p>${data[i].user.username}</p></div>
                                             <div class="post-excerpt">
                                                 <p>${data[i].summary}</p>
                                             </div>
@@ -35,6 +36,7 @@ function pageload() {
                                         </div>
                                     <div class="post-content">
                                         <a href="${data[i].postLink}"><h3 class="post-title">${data[i].title}</h3></a>
+                                            <div><p>${data[i].user.username}</p></div>
                                             <div class="post-excerpt">
                                                 <p>${data[i].summary}</p>
                                             </div>
@@ -65,7 +67,7 @@ function search() {
         data : { searchtext : searchtext,
             selecter : seletOption},
         success: function (data) {
-            // console.log(data);
+            console.log(data);
             if (data.length == 0) {
                 alert("검색결과 몰?루");
                 return;
@@ -79,6 +81,7 @@ function search() {
                                     </div>
                                 <div class="post-content">
                                     <a href="${data[i].URL}"><h3 class="post-title">${data[i].TITLE}</h3></a>
+                                    <div><p>${data[i].USER.name}</p></div>
                                         <div class="post-excerpt">
                                             <p>${data[i].SUMMARY}</p>
                                         </div>

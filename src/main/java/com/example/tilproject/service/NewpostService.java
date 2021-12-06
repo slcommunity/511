@@ -42,6 +42,7 @@ public class NewpostService {
                 map.put("TITLE",titleResult.get(i).getTitle());
                 map.put("SUMMARY", titleResult.get(i).getSummary());
                 map.put("URL",titleResult.get(i).getPostLink());
+                map.put("USER",titleResult.get(i).getUser());
 
                 mergedList.add(map);
             }
@@ -55,6 +56,7 @@ public class NewpostService {
                 map.put("TITLE",summaryResult.get(i).getTitle());
                 map.put("SUMMARY", summaryResult.get(i).getSummary());
                 map.put("URL",summaryResult.get(i).getPostLink());
+                map.put("USER",summaryResult.get(i).getUser());
 
                 mergedList.add(map);
             }
@@ -68,6 +70,7 @@ public class NewpostService {
                 map.put("TITLE",summaryResult.get(i).getTitle());
                 map.put("SUMMARY", summaryResult.get(i).getSummary());
                 map.put("URL",summaryResult.get(i).getPostLink());
+                map.put("USER",summaryResult.get(i).getUser());
 
                 mergedList.add(map);
             }
@@ -80,6 +83,7 @@ public class NewpostService {
                 map.put("TITLE",titleResult.get(i).getTitle());
                 map.put("SUMMARY", titleResult.get(i).getSummary());
                 map.put("URL",titleResult.get(i).getPostLink());
+                map.put("USER",titleResult.get(i).getUser());
 
                 mergedList.add(map);
             }
