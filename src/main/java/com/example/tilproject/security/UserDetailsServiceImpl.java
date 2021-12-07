@@ -1,7 +1,7 @@
 package com.example.tilproject.security;
 
 import com.example.tilproject.domain.User;
-import com.example.tilproject.repository.adminRepository.UserRepository;
+import com.example.tilproject.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

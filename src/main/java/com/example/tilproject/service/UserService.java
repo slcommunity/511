@@ -5,7 +5,7 @@ import com.example.tilproject.domain.User;
 import com.example.tilproject.domain.UserRole;
 import com.example.tilproject.dto.SignupRequestDto;
 import com.example.tilproject.repository.adminRepository.TurnRepository;
-import com.example.tilproject.repository.adminRepository.UserRepository;
+import com.example.tilproject.repository.UserRepository;
 import com.example.tilproject.utils.S3Uploader;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;

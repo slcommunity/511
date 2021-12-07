@@ -1,4 +1,4 @@
-package com.example.tilproject.repository.adminRepository;
+package com.example.tilproject.repository;
 
 import com.example.tilproject.domain.Turn;
 import com.example.tilproject.domain.User;

@@ -1,10 +1,10 @@
 package com.example.tilproject.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.mapping.ToOne;
-import org.springframework.data.util.Lazy;
 
 import javax.persistence.*;
 import java.util.List;
@@ -48,11 +48,14 @@ public class User extends Timestamped{
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<NewPost> newPosts;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Board> boards;
 
+    @JsonIgnore
+    @JsonManagedReference
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Review> reviews;
+    private List<Comment> comments;
 
 //    OneToOne에서 Lazy로딩이 안먹혀서 꺼놨습니다.
 //    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)

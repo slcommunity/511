@@ -2,11 +2,10 @@ package com.example.tilproject.service.adminService;
 
 import com.example.tilproject.domain.Turn;
 import com.example.tilproject.domain.User;
-import com.example.tilproject.dto.TurnDto;
 import com.example.tilproject.dto.UserGetDto;
 import com.example.tilproject.dto.UserPagingRequestDto;
 import com.example.tilproject.repository.adminRepository.TurnRepository;
-import com.example.tilproject.repository.adminRepository.UserRepository;
+import com.example.tilproject.repository.UserRepository;
 import com.example.tilproject.utils.PagingResult;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
