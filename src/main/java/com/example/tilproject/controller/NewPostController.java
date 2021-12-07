@@ -2,6 +2,7 @@ package com.example.tilproject.controller;
 
 import com.example.tilproject.domain.NewPost;
 import com.example.tilproject.dto.SearchRequestDto;
+import com.example.tilproject.dto.SearchResponse;
 import com.example.tilproject.service.NewpostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
@@ -29,7 +30,7 @@ public class NewPostController {
 
     @GetMapping(value = "/posts/search/{searchtxt}")
     @ResponseBody
-    public List<Map<String, Object>> postSearch (SearchRequestDto txt) {
+    public List<SearchResponse> postSearch (SearchRequestDto txt) {
         return newpostService.postSearch(txt);
     }
 
