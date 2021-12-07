@@ -34,6 +34,6 @@ TIL 블로그를 스프링으로 전환합니다
 😎 3차 프로젝트 소감  
 
 📌 매일, 매주회고 
-
--[상세보기 -notion](https://www.notion.so/511-6fa7c25342d549cda5321849a9336844)
 -
+-[상세보기 -notion](https://www.notion.so/511-6fa7c25342d549cda5321849a9336844)
+
