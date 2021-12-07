@@ -23,7 +23,7 @@ public class CrawlingScheduler {
     private final UserRepository userRepository;
     private final NewPostRepository newPostRepository;
 
-    @Scheduled(cron = "0 49 10 * * *")
+    @Scheduled(cron = "0 25 16 * * *")
     public void Crawling() throws IOException {
 
         List<User> users = userRepository.findAll();
@@ -36,10 +36,10 @@ public class CrawlingScheduler {
         Elements card;
 
         //중복검사
-        List<NewPost> titledata = newPostRepository.findAll();
+        List<NewPost> urldata = newPostRepository.findAll();
         List<String> overlap = new ArrayList<>();
-        for(int i=0; i<titledata.size(); i++){
-            overlap.add(titledata.get(i).getTitle());
+        for(int i=0; i<urldata.size(); i++){
+            overlap.add(urldata.get(i).getPostLink());
         }
 
         for (User user : users) {
@@ -53,16 +53,15 @@ public class CrawlingScheduler {
                 for(int i=0; i<card.size(); i++){
                     title = html.select(".title").get(i).text();
                     summary = html.select(".summary").get(i).text();
-                    postLink = html.select(".link-article").get(i*2).attr("href");
+                    postLink = blogUrl + html.select(".link-article").get(i*2).attr("href");
                     imageUrl = html.select(".img-thumbnail").get(i).attr("src");
-
-                    if (!overlap.contains(title)){
-                        NewPost newPost = new NewPost(title, summary, postLink, imageUrl, user);
+                    if (!overlap.contains(postLink)){
+                        NewPost newPost = new NewPost(title, summary, imageUrl, postLink, user);
                         newPostRepository.save(newPost);
                     }
-
                 }
             }
+
             else if(blogUrl.contains("https://velog.io")){
                 Connection conn = Jsoup.connect(blogUrl);
                 Document html = conn.get();
@@ -70,19 +69,14 @@ public class CrawlingScheduler {
                 for(int i=0; i<card.size(); i++){
                     title = card.get(i).text();
                     summary = card.get(i).parent().parent().select("p").text();
-                    postLink = card.get(i).parent().parent().select("a div img").attr("src");
-                    imageUrl ="https://velog.io" + card.get(i).parent().attr("href");
-                   /* postLink = "https://velog.io" + card.get(i).parent().attr("href");
-                    imageUrl = card.get(i).parent().parent().select("a div img").attr("src");*/
+                    imageUrl = card.get(i).parent().parent().select("a div img").attr("src");
+                    postLink ="https://velog.io" + card.get(i).parent().attr("href");
 
-                    if (!overlap.contains(title)){
-                        NewPost newPost = new NewPost(title, summary, postLink, imageUrl, user);
+                    if (!overlap.contains(postLink)){
+                        NewPost newPost = new NewPost(title, summary, imageUrl ,postLink, user);
                         newPostRepository.save(newPost);
                     }
                 }
-            }
-            else{
-
             }
         }
     }
