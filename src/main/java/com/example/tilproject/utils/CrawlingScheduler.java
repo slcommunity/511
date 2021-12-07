@@ -4,7 +4,7 @@ package com.example.tilproject.utils;
 import com.example.tilproject.domain.NewPost;
 import com.example.tilproject.domain.User;
 import com.example.tilproject.repository.adminRepository.NewPostRepository;
-import com.example.tilproject.repository.adminRepository.UserRepository;
+import com.example.tilproject.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -23,7 +23,9 @@ public class CrawlingScheduler {
     private final UserRepository userRepository;
     private final NewPostRepository newPostRepository;
 
+
     @Scheduled(cron = "0 49 10 * * *")
+
     public void Crawling() throws IOException {
 
         List<User> users = userRepository.findAll();
@@ -60,7 +62,6 @@ public class CrawlingScheduler {
                         NewPost newPost = new NewPost(title, summary, postLink, imageUrl, user);
                         newPostRepository.save(newPost);
                     }
-
                 }
             }
             else if(blogUrl.contains("https://velog.io")){
@@ -79,10 +80,8 @@ public class CrawlingScheduler {
                         NewPost newPost = new NewPost(title, summary, postLink, imageUrl, user);
                         newPostRepository.save(newPost);
                     }
-                }
-            }
-            else{
 
+                }
             }
         }
     }
