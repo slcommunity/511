@@ -8,4 +8,5 @@ import lombok.Setter;
 public class SearchRequestDto {
     private String searchtext;
     private String selecter;
+
 }
