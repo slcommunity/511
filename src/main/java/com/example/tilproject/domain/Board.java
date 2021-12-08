@@ -27,7 +27,6 @@ public class Board extends Timestamped{
     @Column(nullable = false)
     private String title;
     private String content;
-    private LocalDateTime createdAt;
 
     //    @JsonBackReference
     @JsonIgnoreProperties({"boards"})
