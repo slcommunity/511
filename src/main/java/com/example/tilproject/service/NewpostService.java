@@ -2,6 +2,8 @@ package com.example.tilproject.service;
 
 import com.example.tilproject.domain.NewPost;
 import com.example.tilproject.dto.SearchRequestDto;
+import com.example.tilproject.dto.SearchResponse;
+import com.example.tilproject.repository.UserRepository;
 import com.example.tilproject.repository.adminRepository.NewPostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

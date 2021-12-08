@@ -297,10 +297,7 @@ figure {
   margin: 0 0 1rem;
 }
 
-img,
-svg {
-  vertical-align: middle;
-}
+
 
 table {
   caption-side: bottom;
@@ -11294,6 +11291,7 @@ html {
 
 .page-section {
   padding: 4rem 0;
+  min-height:55vh;
 }
 .page-section .page-section-heading {
   font-size: 2.25rem;
@@ -11514,7 +11512,7 @@ html {
 /*  Helper Styles */
 body {
   font-family: Varela Round;
-  background: #f1f1f1;
+  background: #fff;
 }
 
 a {
@@ -11615,4 +11613,6 @@ a {
   display: flex;
   margin-top: 50px;
 }
+
+
 
