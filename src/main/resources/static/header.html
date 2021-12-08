@@ -20,7 +20,16 @@
         }
         $("#user-dropdown").append(temphtml)
     });
+
+    function logout() {
+        localStorage.removeItem('token');
+        localStorage.removeItem('userId')
+        sessionStorage.removeItem('userId');
+        alert('로그아웃을 완료했습니다.');
+        window.location.href = '/';
+    }
 </script>
+<link href="css/index.css" rel="stylesheet">
 <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav" style="position: static">
     <div class="container">
         <a class="navbar-brand" href="index.html">내일배움캠프 1기 TIL</a>
@@ -32,7 +41,7 @@
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="">최신글</a></li>
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="memberCard.html">멤버카드</a></li>
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="">자유게시판</a></li>
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="boardList.html">자유게시판</a></li>
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="urlcollection.html">발제, 타임어택</a></li>
                 <li class="nav-item mx-0 mx-lg-1 dropdown">
                     <a class="nav-link py-3 px-0 px-lg-3 rounded dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">

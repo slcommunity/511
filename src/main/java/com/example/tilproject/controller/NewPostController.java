@@ -2,6 +2,7 @@ package com.example.tilproject.controller;
 
 import com.example.tilproject.domain.NewPost;
 import com.example.tilproject.dto.SearchRequestDto;
+import com.example.tilproject.dto.SearchResponse;
 import com.example.tilproject.service.NewpostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
@@ -20,14 +21,6 @@ public class NewPostController {
 
     private final NewpostService newpostService;
 
-    @GetMapping("/newpost")
-    @ResponseBody
-    public ModelAndView index(Model model) {
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("newpost");
-        return mv;
-    }
-
 
     @GetMapping(value = "/postlist")
     @ResponseBody
@@ -37,7 +30,7 @@ public class NewPostController {
 
     @GetMapping(value = "/posts/search/{searchtxt}")
     @ResponseBody
-    public List<Map<String, Object>> postSearch (SearchRequestDto txt) {
+    public List<SearchResponse> postSearch (SearchRequestDto txt) {
         return newpostService.postSearch(txt);
     }
 
