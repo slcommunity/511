@@ -17,26 +17,6 @@
         $("#header").load("header.html");
         $("#footer").load("footer.html");
     });
-    $(document).ready(function () {
-        let username = localStorage.getItem('userId')
-        let token = localStorage.getItem('token')
-        let temphtml
-
-        if (token == null && token == null) {
-            temphtml = `<li><a class="dropdown-item" href="login.html">로그인</a></li>`
-            $("#userInfo").removeClass("fas")
-            $("#userInfo").addClass("far")
-        } else {
-            temphtml = `<li><a class="dropdown-item" href="userinfo.html">내 정보</a></li>
-<li><a class="dropdown-item" href="myBoard.html">내가 쓴 글</a></li>
-<li><a class="dropdown-item" href="myComment.html">내가 쓴 댓글</a></li>
-<li><hr class="dropdown-divider"></li>
-<li><a class="dropdown-item" onclick="logout()">로그아웃</a></li>`
-            $("#userInfo").removeClass("far")
-            $("#userInfo").addClass("fas")
-        }
-        $("#user-dropdown").append(temphtml)
-    });
 </script>
 <body>
 <div id="header"></div>
