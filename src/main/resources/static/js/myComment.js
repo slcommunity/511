@@ -21,7 +21,7 @@ function makeTable(comment){
                         <td class="comment">${comment['content']}</td>
                         <td>${comment['username']}</td>
                         <td>${comment['createdAt']}</td>
-                        <td onclick="deleteComment(${comment['boardIdx']}, ${comment['idx']})">삭제</td>
+                        <td><input type="button" class="btn-sm btn-outline-danger" onclick="deleteComment(${comment['boardIdx']}, ${comment['idx']})" value="삭제"></td>
                     </tr>`
     $("#boardList").append(temphtml)
 }

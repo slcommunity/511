@@ -25,7 +25,7 @@ function makeTable(board){
                         <td class="title" onclick="location.href='boardView.html?boardIdx=${board['idx']}'">${board['title']}</td>
                         <td>${board['content']}</td>
                         <td>${board['createdAt']}</td>
-                        <td onclick="deleteArticle(${board['idx']})">삭제</td>
+                        <td><input type="button" class="btn-sm btn-outline-danger" onclick="deleteArticle(${board['idx']})" value="삭제"></td>
                     </tr>`
     $("#boardList").append(temphtml)
 }
