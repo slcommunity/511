@@ -56,14 +56,6 @@
             success: function (response) { // 성공하면
                 alert("삭제 되었습니다.")
                 location.href = "/boardList.html";
-
             }
         })
-
     }
-
-    $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
-        if (localStorage.getItem('token')) {
-            jqXHR.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token'));
-        }
-    });

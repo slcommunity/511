@@ -100,16 +100,9 @@ function updateComment(boardIdx, content, commentIdx) {
         url: `/boards/comment`,
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify(data),
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token'));
-        },
         success: function (response) {
             alert("수정 완료~");
             setArticleComment(idx)
-            {
-
-
-            }
         }
     })
 }
@@ -118,15 +111,9 @@ function deleteComment(boardId, commentId) {
     $.ajax({
         type: "delete",
         url: `/board/${boardId}/comment/${commentId}`,
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token'));
-        },
         success: function (response) {
             alert("삭제 완료~");
             setArticleComment(idx)
-            {
-
-            }
         }
     })
 }
