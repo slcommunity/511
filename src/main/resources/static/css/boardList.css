@@ -54,7 +54,7 @@
 
     .board_view .info dl dt,
     .board_view .info dl dd {
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
 
     .board_write .info dl {
@@ -105,12 +105,12 @@
 }
 
 .board_title strong {
-    font-size: 3rem;
+    font-size: 1rem;
 }
 
 .board_title p {
     margin-top: 5px;
-    font-size: 0.875rem;
+    font-size: 0.5rem;
 }
 
 .bt_wrap {
@@ -126,7 +126,7 @@
     padding: 10px;
     border: 1px solid #000;
     border-radius: 2px;
-    font-size: 1.4rem;
+    font-size: 1rem;
 }
 
 .bt_wrap a:first-child {
@@ -160,7 +160,7 @@
     display: inline-block;
     padding: 15px 0;
     text-align: center;
-    font-size: 1.4rem;
+    font-size: 1rem;
 }
 
 .board_list > div.top > div {
@@ -218,7 +218,7 @@
 
 .board_page a.num {
     padding-top: 9px;
-    font-size: 1.4rem;
+    font-size: 1rem;
 }
 
 .board_page a.num.on {
@@ -239,7 +239,7 @@
 .board_view .title {
     padding: 20px 15px;
     border-bottom: 1px dashed #ddd;
-    font-size: 2rem;
+    font-size: 1rem;
 }
 
 .board_view .info {
@@ -276,7 +276,7 @@
 .board_view .info dl dt,
 .board_view .info dl dd {
     display: inline-block;
-    font-size: 1.4rem;
+    font-size: 1rem;
 }
 
 .board_view .info dl dd {
@@ -288,7 +288,7 @@
     padding: 15px;
     border-bottom: 1px solid #000;
     line-height: 160%;
-    font-size: 1.4rem;
+    font-size: 1rem;
 }
 
 .board_write {
@@ -322,7 +322,7 @@
 .board_write .info dd {
     display: inline-block;
     vertical-align: middle;
-    font-size: 1.4rem;
+    font-size: 1rem;
 }
 
 .board_write .title dt,

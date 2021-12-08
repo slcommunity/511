@@ -29,12 +29,15 @@ public class CommentService {
         commentRepository.save(comment);
     }
 
-    public List<Comment> getComments(Long idx) {
-
+    public List<CommentResponseDto> getComments(Long idx) {
+        List<CommentResponseDto> commentResponseDtoList = new LinkedList<>();
         Board board = new Board(idx);
         List<Comment> commentList = commentRepository.findByBoardOrderByCreatedAtDesc(board);
-
-        return commentList;
+        for (Comment comment : commentList) {
+            CommentResponseDto commentResponseDto = new CommentResponseDto(comment, board, comment.getUser());
+            commentResponseDtoList.add(commentResponseDto);
+        }
+        return commentResponseDtoList;
     }
 
     @Transactional

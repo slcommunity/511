@@ -23,7 +23,7 @@ public class CommentResponseDto {
         this.content = comment.getContent();
         this.boardIdx = board.getBoardIdx();
         this.boardTitle = board.getTitle();
-        this.username = user.getUsername();
+        this.username = user.getName();
         this.createdAt = comment.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 }

@@ -20,6 +20,7 @@ spring:
       password: 12341234 #DB ID, 비밀번호는 본인거 넣으시면 돼요
 
 
+
   jpa:
     open-in-view: true #open-in-view가 false로 잡혀있으면 세션이 Service와 Controller 사이에서 종료된다.
     hibernate:

@@ -13,6 +13,7 @@
                 xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token'));
             },
             success: function (response) {
+                console.log(response)
                 $("#BoardTitle").val(response['title']);
                 $("#BoardContent").val(response['content']);
             }

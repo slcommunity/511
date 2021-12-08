@@ -66,7 +66,6 @@ function search() {
             selecter : seletOption},
         success: function (data) {
             if (data.length == 0) {
-                alert("검색결과 몰?루");
                 return;
             }
 
