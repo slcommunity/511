@@ -38,17 +38,32 @@ public class CommentService {
     }
 
     @Transactional
-    public Comment updateComment(BoardCommentRequestDto boardCommentRequestDto, User user) {
+    public String updateComment(BoardCommentRequestDto boardCommentRequestDto, User user) {
         Comment comment = commentRepository.findById(boardCommentRequestDto.getCommentIdx()).orElseThrow(
                 () -> new NullPointerException("해당 아이디가 존재하지않습니다.")
         );
-        comment.setContent(boardCommentRequestDto.getContent());
-        return comment;
+        if(user.getUsername().equals(comment.getUser().getUsername())){
+            comment.setContent(boardCommentRequestDto.getContent());
+            return "success";
+        }
+        else{
+            return "fail";
+        }
     }
 
     @Transactional
-    public void deleteComment(Long commentId){
-        commentRepository.deleteById(commentId);
+    public String deleteComment(Long commentId, User user){
+        Comment comment = commentRepository.findById(commentId).orElseThrow(
+                () -> new NullPointerException("해당 아이디가 존재하지않습니다.")
+        );
+        if(user.getUsername().equals(comment.getUser().getUsername())){
+            commentRepository.deleteById(commentId);
+            return "success";
+        }
+        else{
+            return "fail";
+        }
+
     }
 
     @Transactional

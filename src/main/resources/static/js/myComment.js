@@ -31,8 +31,13 @@ function deleteComment(boardId, commentId) {
         type: "delete",
         url: `/board/${boardId}/comment/${commentId}`,
         success: function (response) {
-            alert("삭제 완료!");
-            location.reload();
+            if(response === "success"){
+                alert("삭제 되었습니다.");
+                location.reload();
+            }
+            else{
+                alert("자신의 댓글만 삭제가 가능합니다.")
+            }
         }
     })
 }

@@ -36,16 +36,17 @@ public class CommentController {
     }
 
     @PutMapping("/boards/comment")
-    public Long updateComment(@RequestBody BoardCommentRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+    public String updateComment(@RequestBody BoardCommentRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         User user = userDetails.getUser();
-        return commentService.updateComment(requestDto, user).getIdx();
+
+        return commentService.updateComment(requestDto, user);
     }
 
     @DeleteMapping("/board/{boardId}/comment/{commentId}")
     public String deleteComment(@PathVariable Long commentId, @AuthenticationPrincipal UserDetailsImpl userDetails){
         User user = userDetails.getUser();
-        commentService.deleteComment(commentId);
-        return "ok";
+
+        return commentService.deleteComment(commentId, user);
     }
 
     @GetMapping(value = "/my-comments")
