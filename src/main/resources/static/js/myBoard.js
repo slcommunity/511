@@ -38,7 +38,7 @@ function deleteArticle(idx) {
         success: function (response) { // 성공하면
             if(response === "success"){
                 alert("삭제 되었습니다.")
-                location.href = "/boardList.html";
+                location.reload()
             }
             else{
                 alert("자신의 글만 삭제가 가능합니다.")

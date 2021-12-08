@@ -51,7 +51,7 @@
                     <dd><span id="boardIdx"></span></dd>
                 </dl>
                 <dl>
-                    <dt>username</dt>
+                    <dt>작성자</dt>
                     <dd><span id="username"></span></dd>
                 </dl>
                 <dl>
@@ -73,10 +73,10 @@
         <div id="comments"></div>
     </div>
     <div class="wrap">
-        <textarea class="form-control comment" id="comment" rows="3"></textarea>
+        <textarea style="display: inline-block" class="form-control comment" id="comment" rows="3"></textarea>
+        <button style="display: inline-block" type="button" class="btn btn-primary" onclick="saveComment()">댓글작성</button>
     </div>
-    <button type="button" class="btn btn-primary" onclick="saveComment()">댓글작성</button>
-    <ul class="list-group" id="comment-list">
+    <ul style="margin-top: 3%"  id="comment-list">
     </ul>
 </div>
 </body>

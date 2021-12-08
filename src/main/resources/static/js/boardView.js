@@ -21,7 +21,7 @@ function getArticle(idx) {
             $("#content").text(response['content']);
             $("#boardIdx").text(response['boardIdx']);
             $("#createdAt").text(response['createdAt']);
-            $("#username").text(response['username']);
+            $("#username").text(response['user'].username);
         }
     })
 }
@@ -48,10 +48,9 @@ function makeListPost(comment, boardIdx) {
     //html 댓글리스트 클리어 한번
 
     let tempHtml = `<div class="comment-item-wrap" >
-
-                            <div class="comment-item">${content}</div>
-                           <div class="actions"> <button class="btn btn-primary" onclick="updateComment('${boardIdx}', '${content}', '${commentIdx}')">수정</button>
-                            <button class = "btn btn-primary" onclick="deleteComment(idx, '${commentIdx}')">삭제</button> </div>
+                            <div>${content}</div>
+                           <div class="actions"> <button class="btn btn-outline-primary" onclick="updateComment('${boardIdx}', '${content}', '${commentIdx}')">수정</button>
+                            <button class = "btn btn-outline-danger" onclick="deleteComment(idx, '${commentIdx}')">삭제</button> </div>
 
                         </div>`;
     $("#comment-list").append(tempHtml);
