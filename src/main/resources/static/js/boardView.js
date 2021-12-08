@@ -75,7 +75,6 @@ function saveComment() {
         success: function (response) {
             alert('작성 완료!');
             setArticleComment(idx);
-
         }
     })
 
