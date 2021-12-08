@@ -2,12 +2,6 @@ $(document).ready(function () {
     $.ajax({
         type: "GET",
         url: `/my-comments`,
-        processData: false, // 필수
-        contentType: false, // 필수
-        cache: false,
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token'));
-        },
         success: function (response) {
             for (let i = 0; i < response.length; i++) {
                 let comment = response[i]
@@ -23,11 +17,33 @@ $(document).ready(function () {
 function makeTable(comment){
     let temphtml = `<tr>
                         <td>${comment['idx']}</td>
-                        <td class="board-title" onclick="location.href='test.html'">${comment['boardTitle']}</td>
+                        <td class="board-title" onclick="location.href='boardView.html?boardIdx=${comment['boardIdx']}'">${comment['boardTitle']}</td>
                         <td class="comment">${comment['content']}</td>
                         <td>${comment['username']}</td>
                         <td>${comment['createdAt']}</td>
-                        <td>삭제</td>
+                        <td><input type="button" class="btn-sm btn-outline-danger" onclick="deleteComment(${comment['boardIdx']}, ${comment['idx']})" value="삭제"></td>
                     </tr>`
     $("#boardList").append(temphtml)
 }
+
+function deleteComment(boardId, commentId) {
+    $.ajax({
+        type: "delete",
+        url: `/board/${boardId}/comment/${commentId}`,
+        success: function (response) {
+            if(response === "success"){
+                alert("삭제 되었습니다.");
+                location.reload();
+            }
+            else{
+                alert("자신의 댓글만 삭제가 가능합니다.")
+            }
+        }
+    })
+}
+
+$.ajaxPrefilter(function (options, originalOptions, jqXHR) {
+    if (localStorage.getItem('token')) {
+        jqXHR.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token'));
+    }
+});

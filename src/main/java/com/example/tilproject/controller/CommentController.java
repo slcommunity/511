@@ -3,6 +3,7 @@ package com.example.tilproject.controller;
 import com.example.tilproject.domain.Comment;
 import com.example.tilproject.domain.User;
 import com.example.tilproject.dto.BoardCommentRequestDto;
+import com.example.tilproject.dto.CommentResponseDto;
 import com.example.tilproject.dto.NewCommentRequestDto;
 import com.example.tilproject.security.UserDetailsImpl;
 import com.example.tilproject.service.CommentService;
@@ -35,16 +36,22 @@ public class CommentController {
     }
 
     @PutMapping("/boards/comment")
-    public Long updateComment(@RequestBody BoardCommentRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+    public String updateComment(@RequestBody BoardCommentRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         User user = userDetails.getUser();
-        return commentService.updateComment(requestDto, user).getIdx();
+
+        return commentService.updateComment(requestDto, user);
     }
 
     @DeleteMapping("/board/{boardId}/comment/{commentId}")
     public String deleteComment(@PathVariable Long commentId, @AuthenticationPrincipal UserDetailsImpl userDetails){
         User user = userDetails.getUser();
-        commentService.deleteComment(commentId);
-        return "ok";
+
+        return commentService.deleteComment(commentId, user);
     }
 
+    @GetMapping(value = "/my-comments")
+    public List<CommentResponseDto> getMyComments(@AuthenticationPrincipal UserDetailsImpl userDetails){
+        User user = userDetails.getUser();
+        return commentService.getMyComments(user);
+    }
 }

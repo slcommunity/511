@@ -22,10 +22,9 @@
 
 
     function updateArticle() {
-        let username = "user"
         let title = $("#BoardTitle").val()
         let content = $("#BoardContent").val()
-        let data = {"user": username, "title": title, "content": content}
+        let data = {"title": title, "content": content}
 
         $.ajax({
             type: "PUT",
@@ -36,13 +35,16 @@
                 xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token'));
             },
             success: function (response) { // 성공하면
-                alert("수정 되었습니다.")
-                location.href = "/boardList.html";
-
+                if(response === "success"){
+                    alert("수정 되었습니다.")
+                    location.href = "/boardList.html";
+                }
+                else{
+                    alert("자신의 글만 수정이 가능합니다.")
+                }
             }
         })
     }
-
 
 
     function deleteArticle() {
@@ -54,16 +56,13 @@
             },
             data: {},
             success: function (response) { // 성공하면
-                alert("삭제 되었습니다.")
-                location.href = "/boardList.html";
-
+                if(response === "success"){
+                    alert("삭제 되었습니다.")
+                    location.href = "/boardList.html";
+                }
+                else{
+                    alert("자신의 글만 삭제가 가능합니다.")
+                }
             }
         })
-
     }
-
-    $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
-        if (localStorage.getItem('token')) {
-            jqXHR.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token'));
-        }
-    });

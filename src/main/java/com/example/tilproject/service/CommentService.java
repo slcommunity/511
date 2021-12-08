@@ -4,12 +4,14 @@ import com.example.tilproject.domain.Board;
 import com.example.tilproject.domain.Comment;
 import com.example.tilproject.domain.User;
 import com.example.tilproject.dto.BoardCommentRequestDto;
+import com.example.tilproject.dto.CommentResponseDto;
 import com.example.tilproject.dto.NewCommentRequestDto;
 import com.example.tilproject.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -36,18 +38,45 @@ public class CommentService {
     }
 
     @Transactional
-    public Comment updateComment(BoardCommentRequestDto boardCommentRequestDto, User user) {
+    public String updateComment(BoardCommentRequestDto boardCommentRequestDto, User user) {
         Comment comment = commentRepository.findById(boardCommentRequestDto.getCommentIdx()).orElseThrow(
                 () -> new NullPointerException("해당 아이디가 존재하지않습니다.")
         );
-        comment.setContent(boardCommentRequestDto.getContent());
-        return comment;
+        if(user.getUsername().equals(comment.getUser().getUsername())){
+            comment.setContent(boardCommentRequestDto.getContent());
+            return "success";
+        }
+        else{
+            return "fail";
+        }
     }
 
     @Transactional
-    public void deleteComment(Long commentId){
-        commentRepository.deleteById(commentId);
+    public String deleteComment(Long commentId, User user){
+        Comment comment = commentRepository.findById(commentId).orElseThrow(
+                () -> new NullPointerException("해당 아이디가 존재하지않습니다.")
+        );
+        if(user.getUsername().equals(comment.getUser().getUsername())){
+            commentRepository.deleteById(commentId);
+            return "success";
+        }
+        else{
+            return "fail";
+        }
+
     }
 
-
+    @Transactional
+    public List<CommentResponseDto> getMyComments(User user) {
+        List<CommentResponseDto> commentResponseDtoList = new LinkedList<>();
+        List<Comment> commentList = commentRepository.findByUser(user);
+        if (!commentList.isEmpty()) {
+            for (Comment comment : commentList) {
+                Board board = comment.getBoard();
+                CommentResponseDto commentResponseDto = new CommentResponseDto(comment, board, user);
+                commentResponseDtoList.add(commentResponseDto);
+            }
+        }
+        return commentResponseDtoList;
+    }
 }

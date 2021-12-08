@@ -20,6 +20,14 @@
         }
         $("#user-dropdown").append(temphtml)
     });
+
+    function logout() {
+        localStorage.removeItem('token');
+        localStorage.removeItem('userId')
+        sessionStorage.removeItem('userId');
+        alert('로그아웃을 완료했습니다.');
+        window.location.href = '/';
+    }
 </script>
 
 <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav" style="position: static">
