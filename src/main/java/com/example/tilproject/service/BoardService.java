@@ -39,19 +39,30 @@ public class BoardService {
     }
 
     @Transactional
-    public Board updateBoard(Long id, BoardRequestDto boardRequestDto, User user) {
+    public String updateBoard(Long id, BoardRequestDto boardRequestDto, User user) {
         Board board = boardRepository.findById(id).orElseThrow(
                 () -> new NullPointerException("해당 아이디가 존재하지않습니다.")
         );
-        return board.update(boardRequestDto, user);
+
+        if(user.getUsername().equals(board.getUser().getUsername())){
+            board.update(boardRequestDto, user);
+            return "success";
+        }else{
+            return "fail";
+        }
+
     }
 
-    public Long deleteById(Long id) {
+    public String deleteById(Long id, User user) {
         Board board = boardRepository.findById(id).orElseThrow(
                 () -> new NullPointerException("해당 아이디가 존재하지않습니다.")
         );
-        boardRepository.delete(board);
-        return board.getBoardIdx();
+        if(user.getUsername().equals(board.getUser().getUsername())){
+            boardRepository.delete(board);
+            return "success";
+        }else{
+            return "fail";
+        }
     }
 
     public List<BoardResponseDto> searchBoards(User user) {

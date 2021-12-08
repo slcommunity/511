@@ -44,20 +44,19 @@ public class BoardController {
 
 //작성글 수정
     @PutMapping("/boards/{id}")
-    public Long updateBoard(@PathVariable Long id, @RequestBody BoardRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+    public String updateBoard(@PathVariable Long id, @RequestBody BoardRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         User user = userDetails.getUser();
-        System.out.println(user.getUsername());
-        boardService.updateBoard(id, requestDto, user);
-        return id;
+
+        return boardService.updateBoard(id, requestDto, user);
     }
 
 
 //작성글 삭제
     @DeleteMapping("/boards/{id}")
-    public Long deleteBoard(@PathVariable Long id, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+    public String deleteBoard(@PathVariable Long id, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         User user = userDetails.getUser();
-        boardService.deleteById(id);
-        return id;
+
+        return boardService.deleteById(id, user);
     }
 
     @GetMapping(value = "/my-boards")

@@ -75,7 +75,6 @@ function saveComment() {
         success: function (response) {
             alert('작성 완료!');
             setArticleComment(idx);
-
         }
     })
 
@@ -101,8 +100,13 @@ function updateComment(boardIdx, content, commentIdx) {
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify(data),
         success: function (response) {
-            alert("수정 완료~");
-            setArticleComment(idx)
+            if(response === "success"){
+                alert("수정 되었습니다.");
+                setArticleComment(idx)
+            }
+            else{
+                alert("자신의 댓글만 수정이 가능합니다.")
+            }
         }
     })
 }
@@ -112,8 +116,13 @@ function deleteComment(boardId, commentId) {
         type: "delete",
         url: `/board/${boardId}/comment/${commentId}`,
         success: function (response) {
-            alert("삭제 완료~");
-            setArticleComment(idx)
+            if(response === "success"){
+                alert("삭제 되었습니다.");
+                setArticleComment(idx)
+            }
+            else{
+                alert("자신의 댓글만 삭제가 가능합니다.")
+            }
         }
     })
 }
