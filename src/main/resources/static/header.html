@@ -4,7 +4,7 @@
         let token = localStorage.getItem('token')
         let temphtml
 
-        if(token == null && token == null){
+        if(token == null){
             temphtml = `<li><a class="dropdown-item" href="login.html">로그인</a></li>`
             $("#userInfo").removeClass("fas")
             $("#userInfo").addClass("far")
@@ -29,7 +29,7 @@
         window.location.href = '/';
     }
 </script>
-<link href="css/index.css" rel="stylesheet">
+
 <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav" style="position: static">
     <div class="container">
         <a class="navbar-brand" href="index.html">내일배움캠프 1기 TIL</a>
@@ -39,7 +39,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="">최신글</a></li>
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="newpost.html">최신글</a></li>
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="memberCard.html">멤버카드</a></li>
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="boardList.html">자유게시판</a></li>
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="urlcollection.html">발제, 타임어택</a></li>

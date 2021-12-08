@@ -86,9 +86,7 @@
     padding: 0;
 }
 
-html {
-    font-size: 10px;
-}
+
 
 ul, li {
     list-style: none;
@@ -365,6 +363,8 @@ a {
     border: 0;
     resize: vertical;
 }
+
+
 
 
 
