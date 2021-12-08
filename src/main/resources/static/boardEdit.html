@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIL</title>
+    <link rel="stylesheet" href="css/css.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/boardEdit.js"></script>
+    <script src="js/logout.js"></script>
+    <link href="css/index.css" rel="stylesheet">
+    <link href="css/boardEdit.css" rel="stylesheet">
+
+</head>
+<script>
+    $(document).ready(function () {
+        $("#header").load("header.html");
+        $("#footer").load("footer.html");
+    });
+    $(document).ready(function () {
+        let username = localStorage.getItem('userId')
+        let token = localStorage.getItem('token')
+        let temphtml
+
+        if (token == null && token == null) {
+            temphtml = `<li><a class="dropdown-item" href="login.html">로그인</a></li>`
+            $("#userInfo").removeClass("fas")
+            $("#userInfo").addClass("far")
+        } else {
+            temphtml = `<li><a class="dropdown-item" href="userinfo.html">내 정보</a></li>
+<li><a class="dropdown-item" href="myBoard.html">내가 쓴 글</a></li>
+<li><a class="dropdown-item" href="myComment.html">내가 쓴 댓글</a></li>
+<li><hr class="dropdown-divider"></li>
+<li><a class="dropdown-item" onclick="logout()">로그아웃</a></li>`
+            $("#userInfo").removeClass("far")
+            $("#userInfo").addClass("fas")
+        }
+        $("#user-dropdown").append(temphtml)
+    });
+</script>
+
+<body>
+<div id="header"></div>
+<div class="board_wrap">
+    <div class="board_title">
+        <strong>TIL</strong>
+        <p>수정 및 삭제페이지</p>
+    </div>
+    <div class="board_write_wrap">
+        <div class="board_write">
+            <div class="title">
+                <dl>
+                    <dt>제목</dt>
+                    <dd><input id="BoardTitle" type="text" placeholder="제목 입력" value="글 제목이 들어갑니다"></dd>
+                </dl>
+            </div>
+
+            <div class="cont">
+                    <textarea id="BoardContent" placeholder="내용 입력">
+글 내용이 들어갑니다.
+글 내용이 들어갑니다.
+글 내용이 들어갑니다.
+글 내용이 들어갑니다.
+글 내용이 들어갑니다.
+글 내용이 들어갑니다.
+글 내용이 들어갑니다.
+글 내용이 들어갑니다.</textarea>
+            </div>
+        </div>
+        <div class="bt_wrap">
+            <a href="javascript:updateArticle()" class="on">수정</a>
+            <a href="boardList.html">취소</a>
+            <a href="javascript:deleteArticle()">삭제</a>
+        </div>
+    </div>
+</div>
+</body>
+<div id="footer"></div>
+</html>

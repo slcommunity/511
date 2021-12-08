@@ -62,11 +62,11 @@ function register() {
         $("#github").focus()
         return;
     }
-    if(!turn) {
-        alert("기수를 선택해주세요.")
-        $("#turnSelect").focus()
-        return;
-    }
+  //  if(!turn) {
+   //     alert("기수를 선택해주세요.")
+   //     $("#turnSelect").focus()
+   //     return;
+    //}
     if(!$("#userID").hasClass("is-safe")){
         alert("ID 중복확인을 해주세요.")
         return;
