@@ -29,8 +29,7 @@ public class CommentController {
     }
 
     @GetMapping("/board/comment/{idx}")
-    public List<Comment> getBoardComment(@PathVariable Long idx) {
-
+    public List<CommentResponseDto> getBoardComment(@PathVariable Long idx) {
         return commentService.getComments(idx);
 
     }
