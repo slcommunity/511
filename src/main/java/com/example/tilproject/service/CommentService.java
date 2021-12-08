@@ -4,12 +4,14 @@ import com.example.tilproject.domain.Board;
 import com.example.tilproject.domain.Comment;
 import com.example.tilproject.domain.User;
 import com.example.tilproject.dto.BoardCommentRequestDto;
+import com.example.tilproject.dto.CommentResponseDto;
 import com.example.tilproject.dto.NewCommentRequestDto;
 import com.example.tilproject.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -49,5 +51,17 @@ public class CommentService {
         commentRepository.deleteById(commentId);
     }
 
-
+    @Transactional
+    public List<CommentResponseDto> getMyComments(User user) {
+        List<CommentResponseDto> commentResponseDtoList = new LinkedList<>();
+        List<Comment> commentList = commentRepository.findByUser(user);
+        if (!commentList.isEmpty()) {
+            for (Comment comment : commentList) {
+                Board board = comment.getBoard();
+                CommentResponseDto commentResponseDto = new CommentResponseDto(comment, board, user);
+                commentResponseDtoList.add(commentResponseDto);
+            }
+        }
+        return commentResponseDtoList;
+    }
 }

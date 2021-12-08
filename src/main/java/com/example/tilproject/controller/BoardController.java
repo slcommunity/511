@@ -3,6 +3,7 @@ package com.example.tilproject.controller;
 import com.example.tilproject.domain.Board;
 import com.example.tilproject.domain.User;
 import com.example.tilproject.dto.BoardRequestDto;
+import com.example.tilproject.dto.BoardResponseDto;
 import com.example.tilproject.repository.BoardRepository;
 import com.example.tilproject.security.UserDetailsImpl;
 import com.example.tilproject.service.BoardService;
@@ -57,6 +58,12 @@ public class BoardController {
         User user = userDetails.getUser();
         boardService.deleteById(id);
         return id;
+    }
+
+    @GetMapping(value = "/my-boards")
+    public List<BoardResponseDto> getMyBoards(@AuthenticationPrincipal UserDetailsImpl userDetails){
+        User user = userDetails.getUser();
+        return boardService.searchBoards(user);
     }
 }
 // 검색기능

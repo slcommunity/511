@@ -3,12 +3,14 @@ package com.example.tilproject.service;
 import com.example.tilproject.domain.Board;
 import com.example.tilproject.domain.User;
 import com.example.tilproject.dto.BoardRequestDto;
+import com.example.tilproject.dto.BoardResponseDto;
 import com.example.tilproject.repository.BoardRepository;
 import com.example.tilproject.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.LinkedList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -52,4 +54,14 @@ public class BoardService {
         return board.getBoardIdx();
     }
 
+    public List<BoardResponseDto> searchBoards(User user) {
+        List<BoardResponseDto> boardResponseDtoList = new LinkedList<>();
+        List<Board> boardList = boardRepository.findByUser(user);
+
+        for (Board board:boardList) {
+            BoardResponseDto boardResponseDto = new BoardResponseDto(board, user);
+            boardResponseDtoList.add(boardResponseDto);
+        }
+        return boardResponseDtoList;
+    }
 }

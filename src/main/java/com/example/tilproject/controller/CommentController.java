@@ -3,6 +3,7 @@ package com.example.tilproject.controller;
 import com.example.tilproject.domain.Comment;
 import com.example.tilproject.domain.User;
 import com.example.tilproject.dto.BoardCommentRequestDto;
+import com.example.tilproject.dto.CommentResponseDto;
 import com.example.tilproject.dto.NewCommentRequestDto;
 import com.example.tilproject.security.UserDetailsImpl;
 import com.example.tilproject.service.CommentService;
@@ -47,4 +48,9 @@ public class CommentController {
         return "ok";
     }
 
+    @GetMapping(value = "/my-comments")
+    public List<CommentResponseDto> getMyComments(@AuthenticationPrincipal UserDetailsImpl userDetails){
+        User user = userDetails.getUser();
+        return commentService.getMyComments(user);
+    }
 }
