@@ -9,5 +9,5 @@ public interface NewPostRepository extends JpaRepository<NewPost, Long> {
     List<NewPost> findBytitleContaining(String txt);
 
     List<NewPost> findBysummaryContaining(String txt);
-    
+
 }
