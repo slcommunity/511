@@ -24,6 +24,7 @@ import java.io.IOException;
 
 @RequiredArgsConstructor
 @RestController
+@RequestMapping("/api")
 public class UserApiController {
 
     private final JwtTokenUtil jwtTokenUtil;

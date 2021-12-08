@@ -15,6 +15,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
+@RequestMapping("/api")
 public class CommentController {
 
     private final CommentService commentService;

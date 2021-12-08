@@ -14,7 +14,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("admin/")
+@RequestMapping("/api/admin/")
 @RequiredArgsConstructor
 public class AdminTurnController {
 
