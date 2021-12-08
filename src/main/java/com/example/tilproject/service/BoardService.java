@@ -6,7 +6,11 @@ import com.example.tilproject.dto.BoardRequestDto;
 import com.example.tilproject.dto.BoardResponseDto;
 import com.example.tilproject.repository.BoardRepository;
 import com.example.tilproject.repository.CommentRepository;
+import com.example.tilproject.utils.PagingResult;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -18,7 +22,7 @@ import java.util.List;
 public class BoardService {
 
     private final BoardRepository boardRepository;
-    private final CommentRepository commentRepository;
+    private static final int BLOCK_PAGE_NUM_COUNT = 10;
 
     public Board SetBoard(BoardRequestDto boardRequestDto, User user) {
         Board board = new Board(boardRequestDto, user);
@@ -33,9 +37,17 @@ public class BoardService {
         );
     }
 
-    public List<Board> getBoards() {
-        List<Board> allByOrderByCreatedAtDesc = boardRepository.findAllByOrderByCreatedAtDesc();
-        return allByOrderByCreatedAtDesc;
+    public PagingResult getBoards(int curPage) {
+        Pageable pageable = PageRequest.of(curPage-1, BLOCK_PAGE_NUM_COUNT);
+        Page<Board> boards = boardRepository.findAllByOrderByCreatedAtDesc(pageable);
+
+        List<Board> boardList = boards.getContent();
+
+        return new PagingResult(boardList, boards.getTotalPages());
+    }
+
+    public PagingResult getSearchResult(String word) {
+        return new PagingResult(boardRepository.findByTitle(word), 1);
     }
 
     @Transactional

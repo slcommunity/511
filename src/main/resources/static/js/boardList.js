@@ -1,21 +1,62 @@
-
+let searchTitle = "";
 
 $(document).ready(function () {
-    getArticle()
+    getArticle(1)
 });
-function getArticle() {
+
+function getArticle(curpage) {
     $.ajax({
         type: "GET",
-        url: `/board`,
+        url: `/boards/${curpage}`,
         contentType: 'application/json; charset=utf-8',
         success: function (response) {
-            for (let i = 0; i < response.length; i++) {
-                num = response.length - i;
-                makeListPost(response[i],num);
+            let list = response.data;
+            let fullCount = response.count;
+            $("#board-list").empty();
+            for (let i = 0; i < list.length; i++) {
+                num = i + 1;
+                makeListPost(list[i], num);
+            }
+            makePagination(fullCount, curpage);
+        }
+    })
+}
+
+function makePagination(count, curpage) {
+    let tempHtml = ``;
+    for(let i = 0; i < count; i++){
+        if(i + 1 == curpage) {
+            tempHtml += `<a href="#" class="num on">${i + 1}</a>`;
+        }else{
+            tempHtml += `<a href="#" class="num" onclick="getArticle(${i + 1})">${i + 1}</a>`;
+        }
+    }
+    $('#board_pages').html(tempHtml);
+}
+
+function searchBoard(){
+    let title = $("#searchBoard").val()
+    $.ajax({
+        type: "GET",
+        url: `/board/title/${title}`,
+        success: function (response){
+            let list = response.data;
+            let fullCount = response.count;
+            if(list.length == 0) {
+                alert("검색값이 없어요!");
+            }
+            else {
+                $("#board-list").empty();
+                for (let i = 0; i < list.length; i++) {
+                    num = i + 1;
+                    makeListPost(list[i], num);
+                }
+                makePagination(fullCount, 1);
             }
         }
     })
 }
+
 function makeListPost(board, num) {
     let title = board.title;
     let content = board.content;
@@ -33,3 +74,4 @@ function makeListPost(board, num) {
     $("#board-list").append(tempHtml);
 
 }
+

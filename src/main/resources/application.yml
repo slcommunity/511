@@ -15,9 +15,9 @@ spring:
   datasource:
     hikari:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      jdbc-url: jdbc:mysql://localhost:3306/til?serverTimezone=Asia/Seoul
-      username: user
-      password: 1234 #DB ID, 비밀번호는 본인거 넣으시면 돼요
+      jdbc-url: jdbc:mysql://database-2.cvsiy1n9oexu.ap-northeast-2.rds.amazonaws.com/test?serverTimezone=Asia/Seoul
+      username: admin
+      password: 12341234 #DB ID, 비밀번호는 본인거 넣으시면 돼요
 
 
   jpa:
