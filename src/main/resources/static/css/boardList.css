@@ -2,6 +2,8 @@
     .board_wrap {
         width: 100%;
         min-width: 320px;
+        max-width: 1000px;
+        margin: 0 auto;
         padding: 0 30px;
         box-sizing: border-box;
     }
@@ -79,20 +81,16 @@
         width: 100%;
     }
 }
-* {
+.board_wrap * {
     margin: 0;
-    padding: 0;
-}
+    padding: 0; }
 
-html {
-    font-size: 10px;
-}
 
-ul, li {
+.board_wrap ul, .board_wrap li {
     list-style: none;
 }
 
-a {
+.board_wrap a {
     text-decoration: none;
     color: inherit;
 }
@@ -112,7 +110,7 @@ a {
 
 .board_title p {
     margin-top: 5px;
-    font-size: 1.4rem;
+    font-size: 0.875rem;
 }
 
 .bt_wrap {
@@ -166,11 +164,12 @@ a {
 }
 
 .board_list > div.top > div {
-    font-weight: 600;
+    font-weight: 400;
 }
 
 .board_list .num {
     width: 10%;
+
 }
 
 .board_list .title {
@@ -278,10 +277,6 @@ a {
 .board_view .info dl dd {
     display: inline-block;
     font-size: 1.4rem;
-}
-
-.board_view .info dl dt {
-
 }
 
 .board_view .info dl dd {
