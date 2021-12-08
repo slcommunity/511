@@ -58,6 +58,11 @@ function makeListPost(comment, boardIdx) {
 
 
 function saveComment() {
+    if(!localStorage.getItem("token")){
+        alert("로그인 후 이용해주세요!");
+        return;
+    }
+
     let idx = getParam();
     let data = {
         "boardIdx": idx,

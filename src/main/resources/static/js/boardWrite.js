@@ -3,7 +3,6 @@ function postArticle() {
         "title": $("#title").val(),
         'content': $("#contents").val()
     };
-
     $.ajax({
         type: "POST",
         url: "/boards",

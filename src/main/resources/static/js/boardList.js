@@ -33,3 +33,11 @@ function makeListPost(board, num) {
     $("#board-list").append(tempHtml);
 
 }
+
+function postButton(){
+    if(!localStorage.getItem("token")){
+        alert("로그인 후 이용해주세요!")
+    }else{
+        location.href="boardWrite.html"
+    }
+}
