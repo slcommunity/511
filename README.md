@@ -12,28 +12,27 @@ TIL 블로그를 스프링으로 전환합니다
 🧙 맴버구성
 -김다은 서지희 양찬홍 장호진
 
+### 3차 프로젝트 With Java,Spring<br>
+프론트 엔드 배포 - [Front Repo](https://github.com/slcommunity/til-front)
+<br>
+백 엔드 배포     - [Back Repo](https://github.com/slcommunity/til-back)
 
-💻기술 선택 이유!  
 
 ---
 
 ### 3차 프로젝트
+📌아키텍처
 
-📌 주요 기능  
+📌기술 선택 이유!
 
-1. 멤버 블로그 url 스크래핑을 파이썬에서 자바로 전환, 최신글 띄워주기
-2. 기존의 로그인, 소셜 로그인을 Spring Security를 이용한 로그인으로 변경
-3. 자유 게시판 기능 추가
-4. admin 계정을 위한 관리 페이지 추가
+📌 주요 기능  - [상세보기 WIKI]()
+1. 로그인
+2. 최신 TIL 모음
+3. 자유게시판
+4. 관리자 페이지
 
-
-
-
-😎 트러블 슈팅  
-
-😎 3차 프로젝트 소감  
+📌 트러블 슈팅 - [상세보기 WIKI]()
 
 📌 매일, 매주회고 
--
--[상세보기 -notion](https://www.notion.so/511-6fa7c25342d549cda5321849a9336844)
+-[상세보기 otion](https://www.notion.so/511-6fa7c25342d549cda5321849a9336844)
 
