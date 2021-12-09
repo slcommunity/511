@@ -22,13 +22,13 @@ public class NewpostService {
     UserRepository userRepository;
 
     public List<NewPost> postList() {
-        return newPostRepository.findAll();
+        return newPostRepository.findAllByOrderByIdxDesc();
     }
 
     public List<SearchResponse> postSearch(SearchRequestDto txt) {
 
-        List<NewPost> titleResult = newPostRepository.findBytitleContaining(txt.getSearchtext());
-        List<NewPost> summaryResult = newPostRepository.findBysummaryContaining(txt.getSearchtext());
+        List<NewPost> titleResult = newPostRepository.findBytitleContainingOrderByIdxDesc(txt.getSearchtext());
+        List<NewPost> summaryResult = newPostRepository.findBysummaryContainingOrderByIdxDesc(txt.getSearchtext());
 
         List<SearchResponse> SearchResponseList = new LinkedList<>();
 
