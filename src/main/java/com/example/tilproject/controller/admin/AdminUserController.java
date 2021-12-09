@@ -15,6 +15,7 @@ public class AdminUserController {
 
     private final AdminUserService adminUserService;
 
+    //User 조회
     @Secured("ROLE_ADMIN")
     @GetMapping("/admin/user")
     public PagingResult getUsers(@ModelAttribute UserPagingRequestDto userPagingRequestDto) {
@@ -26,6 +27,7 @@ public class AdminUserController {
         }
     }
 
+    //User 삭제
     @Secured("ROLE_ADMIN")
     @DeleteMapping("/admin/user/{userId}")
     public String deleteUser(@PathVariable String userId){

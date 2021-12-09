@@ -59,7 +59,8 @@ public class BoardController {
         return boardService.deleteById(id, user);
     }
 
-    @GetMapping(value = "/my-boards")
+    //작성글 검색
+    @GetMapping(value = "/user/boards")
     public List<BoardResponseDto> getMyBoards(@AuthenticationPrincipal UserDetailsImpl userDetails) {
         User user = userDetails.getUser();
         return boardService.searchBoards(user);

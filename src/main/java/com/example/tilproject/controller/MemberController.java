@@ -15,6 +15,7 @@ import java.util.List;
 public class MemberController {
     private final UserService userService;
 
+    //멤버카드 검색
     @GetMapping(value = "/users")
     public List<User> getUsers(@RequestParam(required = false) String searchName){
         return userService.getUsers(searchName);

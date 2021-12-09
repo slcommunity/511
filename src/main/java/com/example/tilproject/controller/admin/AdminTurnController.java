@@ -19,12 +19,14 @@ public class AdminTurnController {
 
     private final AdminTurnService adminTurnService;
 
-    @GetMapping("turn")
+    //기수 조회
+    @GetMapping("/turn")
     public Result getTurns(){
         List<TurnsGetDto> turnDtos = adminTurnService.getTurn();
         return new Result(turnDtos);
     }
 
+    //기수 생성
     @Secured("ROLE_ADMIN")
     @PostMapping("/admin/turn/{turnName}")
     public Long createTurn(@PathVariable String turnName){
@@ -33,6 +35,7 @@ public class AdminTurnController {
         return adminTurnService.createTurn(turnRequestDto);
     }
 
+    //기수 수정
     @Secured("ROLE_ADMIN")
     @PutMapping("/admin/turn")
     public Long updateTurn(@RequestBody TurnModifyDto turnModifyDto){
@@ -40,6 +43,7 @@ public class AdminTurnController {
         return adminTurnService.modifyTurn(turnModifyDto);
     }
 
+    //기수 삭제
     @Secured("ROLE_ADMIN")
     @DeleteMapping("/admin/turn/{turnName}")
     public String deleteTurn(@PathVariable String turnName){
