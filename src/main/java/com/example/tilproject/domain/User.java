@@ -1,5 +1,8 @@
 package com.example.tilproject.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -9,6 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Entity
+@Table(name = "users")
 public class User extends Timestamped{
 
     @Id
@@ -25,28 +29,40 @@ public class User extends Timestamped{
     @Column(nullable = false)
     private String name;
 
+
     @Column(nullable = false)
     private String blog;
 
     @Column(nullable = false)
     private String github;
 
-    @Column(nullable = false)
-    private String turn;
 
     @Column(nullable = true)
     private String image;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Recent> recents;
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "idx")
+    private Turn turn;
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<NewPost> newPosts;
+
+    @JsonIgnore
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Board> boards;
 
+    @JsonIgnore
+    @JsonManagedReference
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Review> reviews;
+    private List<Comment> comments;
 
-    public User(String username, String name, String password, UserRole role, String blog, String github, String turn, String image) {
+//    OneToOne에서 Lazy로딩이 안먹혀서 꺼놨습니다.
+//    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
+//    private UserStatus userStatus;
+
+
+    public User(String username, String name, String password, UserRole role, String blog, String github, Turn turn, String image) {
         this.username = username;
         this.password = password;
         this.name = name;

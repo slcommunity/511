@@ -1,8 +1,10 @@
 package com.example.tilproject.service;
 
+import com.example.tilproject.domain.Turn;
 import com.example.tilproject.domain.User;
 import com.example.tilproject.domain.UserRole;
 import com.example.tilproject.dto.SignupRequestDto;
+import com.example.tilproject.repository.adminRepository.TurnRepository;
 import com.example.tilproject.repository.UserRepository;
 import com.example.tilproject.utils.S3Uploader;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -19,6 +22,7 @@ import java.util.Optional;
 public class UserService {
     private static final String ADMIN_TOKEN = "AAABnv/xRVklrnYxKZ0aHgTBcXukeZygoC";
     private final UserRepository userRepository;
+    private final TurnRepository turnRepository;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final S3Uploader s3Uploader;
@@ -40,7 +44,8 @@ public class UserService {
         String password = passwordEncoder.encode(requestDto.getPassword());
         String blog = requestDto.getBlog();
         String github = requestDto.getGithub();
-        String turn = requestDto.getTurn();
+        Turn turn = turnRepository.findByTurn(requestDto.getTurn());
+
 //        String image = requestDto.getImage();
         String image = null;
         // 사용자 ROLE 확인
@@ -67,6 +72,15 @@ public class UserService {
 
         if(found != null){
             found.update( username,  name,  password, blog, github, imageUrl);
+        }
+    }
+
+    public List<User> getUsers(String searchName){
+        if(searchName == null){
+            return userRepository.findAll();
+        }
+        else{
+            return userRepository.findByNameContaining(searchName);
         }
     }
 }

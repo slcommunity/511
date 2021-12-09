@@ -1,0 +1,59 @@
+<script>
+    $(document).ready(function () {
+        let username = localStorage.getItem('userId')
+        let token = localStorage.getItem('token')
+        let temphtml
+
+        if(token == null){
+            temphtml = `<li><a class="dropdown-item" href="login.html">로그인</a></li>`
+            $("#userInfo").removeClass("fas")
+            $("#userInfo").addClass("far")
+        }
+        else {
+            temphtml = `<li><a class="dropdown-item" href="userinfo.html">내 정보</a></li>
+                            <li><a class="dropdown-item" href="myBoard.html">내가 쓴 글</a></li>
+                            <li><a class="dropdown-item" href="myComment.html">내가 쓴 댓글</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" onclick="logout()">로그아웃</a></li>`
+            $("#userInfo").removeClass("far")
+            $("#userInfo").addClass("fas")
+        }
+        $("#user-dropdown").append(temphtml)
+    });
+
+    function logout() {
+        localStorage.removeItem('token');
+        localStorage.removeItem('userId')
+        sessionStorage.removeItem('userId');
+        alert('로그아웃을 완료했습니다.');
+        window.location.href = '/';
+    }
+</script>
+
+<nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav" style="position: static">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">내일배움캠프 1기 TIL</a>
+        <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            Menu
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="newpost.html">최신글</a></li>
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="memberCard.html">멤버카드</a></li>
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="boardList.html">자유게시판</a></li>
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="urlcollection.html">발제, 타임어택</a></li>
+                <li class="nav-item mx-0 mx-lg-1 dropdown">
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i id="userInfo" class="far fa-user"></i>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="user-dropdown">
+
+                    </ul>
+                </li>
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href=""><i class="far fa-bell"></i></a></li>
+                <!--로그인 되면 이걸 띄울거에요 <i class="fas fa-user"></i> 위에건 아직 비로그인      알람이 있다면 이걸 띄울 거에요 <i class="fas fa-bell"></i> 위에건 아직 알람이 없을 때   (fontawesome)-->
+            </ul>
+        </div>
+    </div>
+</nav>

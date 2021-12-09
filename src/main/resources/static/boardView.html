@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>TIL</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico"/>
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
+          type="text/css"/>
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link href="css/index.css" rel="stylesheet">
+    <link href="css/boardView.css" rel="stylesheet">
+
+    <script src="js/logout.js"></script>
+    <script src="js/boardView.js"></script>
+ 
+    <script>
+    $(document).ready(function () {
+        $("#header").load("header.html");
+        $("#footer").load("footer.html");
+    });
+    </script>
+</head>
+
+<body>
+<div id="header"></div>
+<div class="board_wrap">
+    <div class="board_title">
+        <strong>자유게시판</strong>
+        <p>모두의 TIL! </p>
+    </div>
+    <div class="board_view_wrap">
+        <div class="board_view">
+            <div class="title" id="title">
+                <!--                자유게시판 글 제목-->
+            </div>
+            <div class="info">
+                <dl>
+                    <dt>번호</dt>
+                    <dd><span id="boardIdx"></span></dd>
+                </dl>
+                <dl>
+                    <dt>작성자</dt>
+                    <dd><span id="username"></span></dd>
+                </dl>
+                <dl>
+                    <dt>작성일</dt>
+                    <dd><span id="createdAt"></span></dd>
+                </dl>
+
+            </div>
+            <div class="content" id="content">
+                <!--                자유게시판 내용 -->
+            </div>
+        </div>
+    </div>
+    <div class="bt_wrap">
+        <a href="boardList.html" class="on">목록</a>
+        <a href="boardEdit.html" id="edit"> 수정</a>
+    </div>
+    <div class="form-group">
+        <div id="comments"></div>
+    </div>
+    <div class="wrap">
+        <textarea class="comment" id="comment" rows="3"></textarea>
+        <button type="button" class="btn btn-primary" onclick="saveComment()">댓글작성</button>
+    </div>
+    <div>
+        <ul style="margin-top: 3%"  id="comment-list">
+        </ul>
+    </div>
+
+</div>
+</body>
+<div id="footer"></div>
+</html>

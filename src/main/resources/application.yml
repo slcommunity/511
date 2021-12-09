@@ -15,9 +15,11 @@ spring:
   datasource:
     hikari:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      jdbc-url: jdbc:mysql://localhost:3306/test?serverTimezone=Asia/Seoul
-      username: user
-      password: 1234 #DB ID, 비밀번호는 본인거 넣으시면 돼요
+      jdbc-url: jdbc:mysql://database-2.cvsiy1n9oexu.ap-northeast-2.rds.amazonaws.com/test?serverTimezone=Asia/Seoul
+      username: admin
+      password: 12341234 #DB ID, 비밀번호는 본인거 넣으시면 돼요
+
+
 
   jpa:
     open-in-view: true #open-in-view가 false로 잡혀있으면 세션이 Service와 Controller 사이에서 종료된다.
@@ -25,7 +27,12 @@ spring:
       ddl-auto: update #create update none, 처음엔 create, 그 다음부턴 update를 하셔야 DB refresh가 안돼요
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-    show-sql: true
+
+    properties:
+      hibernate:
+        show-sql: true
+        format_sql: true
+        default_batch_fetch_size: 1000
 
   servlet:
     multipart:
@@ -46,3 +53,6 @@ logging:
       amazonaws:
         util:
           EC2MetadataUtils: error
+    org:
+      hibernate:
+        SQL: debug
