@@ -5,7 +5,7 @@ function postArticle() {
     };
     $.ajax({
         type: "POST",
-        url: "/board",
+        url: "/api/board",
         contentType: "application/json",
         data: JSON.stringify(data),
         beforeSend: function (xhr) {

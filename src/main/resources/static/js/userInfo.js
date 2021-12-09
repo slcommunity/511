@@ -36,7 +36,7 @@ function updateInfo() {
 
     $.ajax({
         type: "PUT",
-        url: "/user",
+        url: "/api/user",
         data: formData,
         processData: false, // 필수
         contentType: false, // 필수

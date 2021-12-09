@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 
 @RequiredArgsConstructor
+@RequestMapping("/api")
 @RestController
 public class UserApiController {
 

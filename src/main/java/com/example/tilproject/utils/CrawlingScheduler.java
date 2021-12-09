@@ -24,7 +24,7 @@ public class CrawlingScheduler {
     private final NewPostRepository newPostRepository;
 
 
-    @Scheduled(cron = "0 49 10 * * *")
+    @Scheduled(cron = "0 27 11 * * *")
     public void Crawling() throws IOException {
 
         List<User> users = userRepository.findAll();

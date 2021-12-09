@@ -92,7 +92,7 @@ function setListType(type) {
 function showUsers(curPage) {
     $.ajax({
         type: "GET",
-        url: `/admin/user?userTurnInfo=${userTurnInfo}&curPage=${curPage}&searchWord=${searchTitle}`,
+        url: `/api/admin/user?userTurnInfo=${userTurnInfo}&curPage=${curPage}&searchWord=${searchTitle}`,
         success: function (response) {
             $('#list-user').empty();
             for (let i = 0; i < response.data.length; i++) {
@@ -148,7 +148,7 @@ function makeUsers(data, idx) {
 function deleteUser(userId){
     $.ajax({
         type: "DELETE",
-        url: `/admin/user/${userId}`,
+        url: `/api/admin/user/${userId}`,
         success: function (response){
             showUsers(1)
         }
@@ -161,7 +161,7 @@ function showTurn() {
 
     $.ajax({
         type: "GET",
-        url: `/turn`,
+        url: `/api/turn`,
         success: function (response) {
             $("#turns").empty();
             let list = response.data;
@@ -211,7 +211,7 @@ function completeModifyTurn(fromName) {
     if (turnTag.indexOf('Turn-new') > -1) {
         $.ajax({
             type: "POST",
-            url: `/admin/turn/${toName}`,
+            url: `/api/admin/turn/${toName}`,
             success: function (response) {
                 alert("추가 성공!");
                 showTurn();
@@ -220,7 +220,7 @@ function completeModifyTurn(fromName) {
     } else {
         $.ajax({
             type: "PUT",
-            url: `/admin/turn`,
+            url: `/api/admin/turn`,
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data),
             success: function (response) {
@@ -235,7 +235,7 @@ function completeModifyTurn(fromName) {
 function deleteTurn(name) {
     $.ajax({
         type: "DELETE",
-        url: `/admin/turn/${name}`,
+        url: `/api/admin/turn/${name}`,
         success: function (response) {
             alert("삭제 성공!");
             showTurn();
@@ -259,7 +259,7 @@ function addTurn() {
 function showByTurn(turn) {
     $.ajax({
         type: "GET",
-        url: `/turn`,
+        url: `/api/turn`,
         success: function (response) {
             let list = response.data;
             if (turn == 1) {
@@ -292,7 +292,7 @@ function callUsersInTurn(value) {
 function showUrls(perPage) {
     $.ajax({
         type: "GET",
-        url: `/admin/url/${perPage}`,
+        url: `/api/admin/url/${perPage}`,
         success: function (response) {
             $("#PRESENTATIONSection").empty();
             $("#TIMEATTACKSection").empty();
@@ -333,7 +333,7 @@ function modifyUrl(url, urlName, urlSection, turn) {
 function deleteUrl(url, urlName, urlSection, turn) {
     $.ajax({
         type: "DELETE",
-        url: `/admin/url?urlName=${urlName}&url=${url}&turn=${turn}&urlSection=${urlSection}`,
+        url: `/api/admin/url?urlName=${urlName}&url=${url}&turn=${turn}&urlSection=${urlSection}`,
         success: function (response) {
             showUrls(turnInfo);
         }
@@ -357,7 +357,7 @@ function completeModifyUrl(url, urlName, urlSection, turn) {
         }
         $.ajax({
             type: "POST",
-            url: `/admin/url?url=${toUrl2}&urlName=${toUrlName2}&turn=${turnInfo}&urlSection=${urlSection}`,
+            url: `/api/admin/url?url=${toUrl2}&urlName=${toUrlName2}&turn=${turnInfo}&urlSection=${urlSection}`,
             success: function (response) {
                 showUrls(turnInfo);
             }
@@ -365,7 +365,7 @@ function completeModifyUrl(url, urlName, urlSection, turn) {
     } else {
         $.ajax({
             type: "PUT",
-            url: `/admin/url?urlname=${urlName}&url=${url}&tourl=${toUrl}&tourlname=${toUrlName}&turn=${turn}`,
+            url: `/api/admin/url?urlname=${urlName}&url=${url}&tourl=${toUrl}&tourlname=${toUrlName}&turn=${turn}`,
             success: function (response) {
                 showUrls(turnInfo);
             }

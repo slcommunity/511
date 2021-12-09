@@ -33,7 +33,7 @@
             let username = localStorage.getItem('userId')
             $.ajax({
                 type: "GET",
-                url: `/user/${username}`,
+                url: `/api/user/${username}`,
                 data: {},
                 success: function (response) {
                     console.log(response['image'])

@@ -6,7 +6,7 @@ function pageload() {
 
     $.ajax({
         type: "GET",
-        url: "/posts",
+        url: "/api/posts",
         data: {},
         success: function (data) {
             $("#postlist").empty();
@@ -61,32 +61,46 @@ function search() {
 
     $.ajax({
         type: "GET",
-        url: `/posts/${searchtext}`,
+        url: `/api/posts/${searchtext}`,
         data : { searchtext : searchtext,
             selecter : seletOption},
         success: function (data) {
             if (data.length == 0) {
                 return;
             }
-
             $('#postlist').empty();
             for (var i = 0; i < data.length; i++) {
-                let temphtml = `<div class="post">
-                                    <div class="post-image post-image-1">
-                                        <img id ="postimg" src="image/default-image.jpg" alt="">
-                                    </div>
-                                <div class="post-content">
-                                    <a href="${data[i].postLink}"><h3 class="post-title">${data[i].title}</h3></a>
-                                    <div><p>${data[i].user.username}</p></div>
-                                        <div class="post-excerpt">
-                                            <p>${data[i].summary}</p>
+                let imageUrl = data[i].imageUrl
+                let temphtml;
+                if(imageUrl === "") {
+                    temphtml = `<div class="post">
+                                        <div class="post-image post-image-1">
+                                            <img src="image/default-image.jpg" alt="">
                                         </div>
-                                </div>
-                                    </div>`
+                                    <div class="post-content">
+                                        <a href="${data[i].postLink}"><h3 class="post-title">${data[i].title}</h3></a>
+                                        <div><p>${data[i].user.username}</p></div>
+                                            <div class="post-excerpt">
+                                                <p>${data[i].summary}</p>
+                                            </div>
+                                    </div>
+                                        </div>`
+                }
+                else{
+                    temphtml = `<div class="post">
+                                        <div class="post-image post-image-1">
+                                            <img src="${imageUrl}" alt="">
+                                        </div>
+                                    <div class="post-content">
+                                        <a href="${data[i].postLink}"><h3 class="post-title">${data[i].title}</h3></a>
+                                            <div><p>${data[i].user.username}</p></div>
+                                            <div class="post-excerpt">
+                                                <p>${data[i].summary}</p>
+                                            </div>
+                                    </div>
+                                        </div>`
+                }
                 $("#postlist").append(temphtml);
-            }
-            if(data[i].IMG != null){
-                $("#postimg").attr('src', data[i].imageUrl)
             }
         }, error: function () {
             alert("통신에 실패했습니다.");
