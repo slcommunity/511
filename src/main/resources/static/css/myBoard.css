@@ -91,7 +91,11 @@ section{
 }
 
 .title{
-    width: 800px;
+    width: 300px;
+}
+
+.board-content{
+    width: 500px;
 }
 
 .board-title{

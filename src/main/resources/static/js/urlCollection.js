@@ -19,7 +19,7 @@ $(document).ready(function () {
 function collectionTurn() {
     $.ajax({
         type: "GET",
-        url: `/admin/turn`,
+        url: `/turn`,
         success: function (response) {
             let list = response.data;
             $("#turnSelect").empty();

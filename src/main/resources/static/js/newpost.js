@@ -6,7 +6,7 @@ function pageload() {
 
     $.ajax({
         type: "GET",
-        url: "/postlist",
+        url: "/posts",
         data: {},
         success: function (data) {
             $("#postlist").empty();
@@ -61,7 +61,7 @@ function search() {
 
     $.ajax({
         type: "GET",
-        url: `/posts/search/${searchtext}`,
+        url: `/posts/${searchtext}`,
         data : { searchtext : searchtext,
             selecter : seletOption},
         success: function (data) {

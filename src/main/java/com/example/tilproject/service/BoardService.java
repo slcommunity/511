@@ -47,7 +47,7 @@ public class BoardService {
     }
 
     public PagingResult getSearchResult(String word) {
-        return new PagingResult(boardRepository.findByTitle(word), 1);
+        return new PagingResult(boardRepository.findByTitleContaining(word), 1);
     }
 
     @Transactional

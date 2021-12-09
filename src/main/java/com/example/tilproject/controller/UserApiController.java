@@ -32,7 +32,8 @@ public class UserApiController {
     private final UserService userService;
 
 
-    @RequestMapping(value = "/sign-in", method = RequestMethod.POST)
+    //로그인
+    @RequestMapping(value = "/user/sign-in", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody UserDto userDto) throws Exception {
         authenticate(userDto.getUsername(), userDto.getPassword());
         final UserDetails userDetails = userDetailsService.loadUserByUsername(userDto.getUsername());
@@ -48,7 +49,8 @@ public class UserApiController {
         return ResponseEntity.ok(new AdminResponse(token, userDetails.getUsername(), role));
     }
 
-    @PostMapping(value = "/signup")
+    //회원가입
+    @PostMapping(value = "/user/sign-up")
     public ResponseEntity<?> createUser(@RequestBody SignupRequestDto userDto) throws Exception {
         userService.registerUser(userDto);
         authenticate(userDto.getUsername(), userDto.getPassword());
@@ -57,7 +59,8 @@ public class UserApiController {
         return ResponseEntity.ok(new JwtResponse(token, userDetails.getUsername()));
     }
 
-    @PutMapping(value = "/userInfo")
+    //회원정보 수정
+    @PutMapping(value = "/user")
     public String updateUser(@ModelAttribute SignupRequestDto userDto,
                              @AuthenticationPrincipal UserDetailsImpl userDetails) throws IOException {
         User user = userDetails.getUser();
@@ -67,7 +70,8 @@ public class UserApiController {
         return "ok";
     }
 
-    @GetMapping(value = "/userInfo/{username}")
+    //회원 정보
+    @GetMapping(value = "/user/{username}")
     public User getUserInfo(@PathVariable String username){
         return userService.searchUser(username);
     }
@@ -82,7 +86,8 @@ public class UserApiController {
         }
     }
 
-    @GetMapping(value = "/user/check/{username}")
+    //ID 중복 확인
+    @GetMapping(value = "/user/validation/username/{username}")
     public String getUser(@PathVariable String username){
         User user = userService.searchUser(username);
         if(user == null){

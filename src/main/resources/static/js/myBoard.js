@@ -7,7 +7,7 @@ $(window).on("load resize ", function() {
 $(document).ready(function () {
     $.ajax({
         type: "GET",
-        url: `/my-boards`,
+        url: `/user/boards`,
         success: function (response) {
             for (let i = 0; i < response.length; i++) {
                 let board = response[i]
@@ -23,7 +23,8 @@ function makeTable(board){
     let temphtml = `<tr>
                         <td>${board['idx']}</td>
                         <td class="title" onclick="location.href='boardView.html?boardIdx=${board['idx']}'">${board['title']}</td>
-                        <td>${board['content']}</td>
+                        <td class="board-content">${board['content']}</td>
+                        <td>${board['username']}</td>
                         <td>${board['createdAt']}</td>
                         <td><input type="button" class="btn-sm btn-outline-danger" onclick="deleteArticle(${board['idx']})" value="삭제"></td>
                     </tr>`

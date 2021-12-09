@@ -161,7 +161,7 @@ function showTurn() {
 
     $.ajax({
         type: "GET",
-        url: `/admin/turn`,
+        url: `/turn`,
         success: function (response) {
             $("#turns").empty();
             let list = response.data;
@@ -259,7 +259,7 @@ function addTurn() {
 function showByTurn(turn) {
     $.ajax({
         type: "GET",
-        url: `/admin/turn`,
+        url: `/turn`,
         success: function (response) {
             let list = response.data;
             if (turn == 1) {

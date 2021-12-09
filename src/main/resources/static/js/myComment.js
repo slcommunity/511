@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $.ajax({
         type: "GET",
-        url: `/my-comments`,
+        url: `/user/comments`,
         success: function (response) {
             for (let i = 0; i < response.length; i++) {
                 let comment = response[i]

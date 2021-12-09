@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class RoleController {
     private final UserService userService;
 
+    //사용자 권한 판별
     @PostMapping(value = "/roles")
     public String getUserRole(@RequestParam(value = "userId",required = true)String userId){
         String role;

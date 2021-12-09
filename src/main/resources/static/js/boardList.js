@@ -38,7 +38,7 @@ function searchBoard(){
     let title = $("#searchBoard").val()
     $.ajax({
         type: "GET",
-        url: `/board/title/${title}`,
+        url: `/boards/title/${title}`,
         success: function (response){
             let list = response.data;
             let fullCount = response.count;

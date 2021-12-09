@@ -20,7 +20,7 @@ public class BoardController {
     private final BoardService boardService;
 
     //작성글 생성
-    @PostMapping("/boards")
+    @PostMapping("/board")
     public String createBoard(@RequestBody BoardRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         User user = userDetails.getUser();
         boardService.SetBoard(requestDto, user);
@@ -34,7 +34,7 @@ public class BoardController {
         return boardService.getBoards(curPage);
     }
 
-    @GetMapping("/board/title/{word}")
+    @GetMapping("/boards/title/{word}")
     public PagingResult searchBoard(@PathVariable String word) {
         return boardService.getSearchResult(word);
     }
@@ -59,7 +59,8 @@ public class BoardController {
         return boardService.deleteById(id, user);
     }
 
-    @GetMapping(value = "/my-boards")
+    //작성글 검색
+    @GetMapping(value = "/user/boards")
     public List<BoardResponseDto> getMyBoards(@AuthenticationPrincipal UserDetailsImpl userDetails) {
         User user = userDetails.getUser();
         return boardService.searchBoards(user);
