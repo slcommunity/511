@@ -50,7 +50,7 @@
             let name = $("#searchName").val()
             $.ajax({
                 type: "GET",
-                url: `/users?searchName=${name}`,
+                url: `/api/users?searchName=${name}`,
                 data: {},
                 success: function (response) {
                     $("#cards").empty()
@@ -65,7 +65,7 @@
         $(document).ready(function () {
             $.ajax({
                 type: "GET",
-                url: `/users`,
+                url: `/api/users`,
                 data: {},
                 success: function (response) {
                     for (let i = 0; i < response.length; i++) {

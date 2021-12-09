@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $.ajax({
         type: "GET",
-        url: `/user/comments`,
+        url: `/api/user/comments`,
         success: function (response) {
             for (let i = 0; i < response.length; i++) {
                 let comment = response[i]
@@ -29,7 +29,7 @@ function makeTable(comment){
 function deleteComment(boardId, commentId) {
     $.ajax({
         type: "delete",
-        url: `/board/${boardId}/comment/${commentId}`,
+        url: `/api/comment/${commentId}`,
         success: function (response) {
             if(response === "success"){
                 alert("삭제 되었습니다.");

@@ -7,7 +7,7 @@ $(document).ready(function () {
 function getArticle(curpage) {
     $.ajax({
         type: "GET",
-        url: `/boards/${curpage}`,
+        url: `/api/boards/${curpage}`,
         contentType: 'application/json; charset=utf-8',
         success: function (response) {
             let list = response.data;
@@ -38,7 +38,7 @@ function searchBoard(){
     let title = $("#searchBoard").val()
     $.ajax({
         type: "GET",
-        url: `/boards/title/${title}`,
+        url: `/api/boards/title/${title}`,
         success: function (response){
             let list = response.data;
             let fullCount = response.count;

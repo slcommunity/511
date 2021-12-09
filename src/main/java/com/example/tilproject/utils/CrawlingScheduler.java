@@ -24,6 +24,7 @@ public class CrawlingScheduler {
     private final NewPostRepository newPostRepository;
 
 
+
     @Scheduled(cron = "0 0 0/12 * * *")
     public void Crawling() throws IOException {
 

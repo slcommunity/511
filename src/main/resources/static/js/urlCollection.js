@@ -19,7 +19,7 @@ $(document).ready(function () {
 function collectionTurn() {
     $.ajax({
         type: "GET",
-        url: `/turn`,
+        url: `/api/turn`,
         success: function (response) {
             let list = response.data;
             $("#turnSelect").empty();
@@ -39,7 +39,7 @@ function callTurns(value) {
 function showCollections(turn) {
     $.ajax({
         type: "GET",
-        url: `/admin/url/${turn}`,
+        url: `/api/admin/url/${turn}`,
         success: function (response) {
             $("#presentationCollection").empty();
             $("#timeAttackCollection").empty();

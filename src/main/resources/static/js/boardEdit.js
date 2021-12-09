@@ -11,7 +11,7 @@ $(document).ready(function () {
 function getEditArticle(idx) {
     $.ajax({
         type: "GET",
-        url: `/board/${idx}`,
+        url: `/api/board/${idx}`,
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token'));
         },
@@ -32,7 +32,7 @@ function updateArticle() {
 
     $.ajax({
         type: "PUT",
-        url: `boards/${idx}`,
+        url: `/api/boards/${idx}`,
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify(data),
         beforeSend: function (xhr) {
@@ -53,7 +53,7 @@ function updateArticle() {
 function deleteArticle() {
     $.ajax({
         type: "DELETE",
-        url: `boards/${idx}`,
+        url: `/api/boards/${idx}`,
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token'));
         },
