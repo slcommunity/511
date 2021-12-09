@@ -10,7 +10,7 @@ function login() {
 
     $.ajax({
         type: 'POST',
-        url: `/sign-in`,
+        url: `/user/sign-in`,
         contentType: "application/json",
         data: JSON.stringify(info),
         success: function (response) {
@@ -82,7 +82,7 @@ function register() {
     }
     $.ajax({
         type: 'POST',
-        url: `/signup`,
+        url: `/user/sign-up`,
         contentType: "application/json",
         data: JSON.stringify(info),
         success: function (response) {
@@ -97,7 +97,7 @@ function register() {
 function loginTurn() {
     $.ajax({
         type: "GET",
-        url: `/admin/turn`,
+        url: `/turn`,
         success: function (response) {
             let list = response.data;
             $("#turnSelect").empty();
@@ -123,7 +123,7 @@ function check(){
 
     $.ajax({
         type: "GET",
-        url: `/user/check/${userId}`,
+        url: `/user/validation/username/${userId}`,
         success: function (response) {
             if(response === "ok"){
                 alert("사용가능한 ID 입니다.")

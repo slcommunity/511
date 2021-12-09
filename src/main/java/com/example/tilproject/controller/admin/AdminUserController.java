@@ -10,14 +10,13 @@ import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
-@RequestMapping("admin/")
 @RequiredArgsConstructor
 public class AdminUserController {
 
     private final AdminUserService adminUserService;
 
     @Secured("ROLE_ADMIN")
-    @GetMapping("user")
+    @GetMapping("/admin/user")
     public PagingResult getUsers(@ModelAttribute UserPagingRequestDto userPagingRequestDto) {
         if(!userPagingRequestDto.getSearchWord().equals("")) {
             return adminUserService.getUserSearch(userPagingRequestDto.getSearchWord());
@@ -28,7 +27,7 @@ public class AdminUserController {
     }
 
     @Secured("ROLE_ADMIN")
-    @DeleteMapping("user/{userId}")
+    @DeleteMapping("/admin/user/{userId}")
     public String deleteUser(@PathVariable String userId){
         return adminUserService.deleteUser(userId);
     }

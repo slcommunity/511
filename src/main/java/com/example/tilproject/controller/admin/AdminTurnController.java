@@ -14,7 +14,6 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("admin/")
 @RequiredArgsConstructor
 public class AdminTurnController {
 
@@ -27,7 +26,7 @@ public class AdminTurnController {
     }
 
     @Secured("ROLE_ADMIN")
-    @PostMapping("turn/{turnName}")
+    @PostMapping("/admin/turn/{turnName}")
     public Long createTurn(@PathVariable String turnName){
 
         TurnRequestDto turnRequestDto = new TurnRequestDto(turnName);
@@ -35,14 +34,14 @@ public class AdminTurnController {
     }
 
     @Secured("ROLE_ADMIN")
-    @PutMapping("turn")
+    @PutMapping("/admin/turn")
     public Long updateTurn(@RequestBody TurnModifyDto turnModifyDto){
 
         return adminTurnService.modifyTurn(turnModifyDto);
     }
 
     @Secured("ROLE_ADMIN")
-    @DeleteMapping("turn/{turnName}")
+    @DeleteMapping("/admin/turn/{turnName}")
     public String deleteTurn(@PathVariable String turnName){
         log.info("delete turn = {}", turnName);
         return adminTurnService.deleteTurn(turnName);

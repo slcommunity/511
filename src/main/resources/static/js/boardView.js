@@ -29,7 +29,7 @@ function getArticle(idx) {
 function setArticleComment(idx) {
     $.ajax({
         type: "GET",
-        url: `/board/comment/${idx}`,
+        url: `/comment/${idx}`,
         success: function (response) {
             $("#comment-list").empty();
             for (let i = 0; i < response.length; i++) {
@@ -72,7 +72,7 @@ function saveComment() {
 
     $.ajax({
         type: "POST",
-        url: "/board/comment",
+        url: "comment",
         contentType: "application/json",
         data: JSON.stringify(data),
         beforeSend: function (xhr) {
@@ -95,7 +95,7 @@ function updateComment(boardIdx, content, commentIdx) {
     let data = {"boardIdx": boardIdx, "content": fix, "commentIdx": commentIdx};
     $.ajax({
         type: "put",
-        url: `/boards/comment`,
+        url: `/comment`,
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify(data),
         beforeSend: function (xhr) {
@@ -116,7 +116,7 @@ function updateComment(boardIdx, content, commentIdx) {
 function deleteComment(boardId, commentId) {
     $.ajax({
         type: "delete",
-        url: `/board/${boardId}/comment/${commentId}`,
+        url: `/comment/${commentId}`,
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token'));
         },

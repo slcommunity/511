@@ -21,17 +21,17 @@ public class NewPostController {
 
     private final NewpostService newpostService;
 
-
-    @GetMapping(value = "/postlist")
+    //최신 블로그 글 가져오기
+    @GetMapping(value = "/posts")
     @ResponseBody
     public List<NewPost> postList() {
         return newpostService.postList();
     }
 
-    @GetMapping(value = "/posts/search/{searchtxt}")
+    //검색
+    @GetMapping(value = "/posts/{searchtxt}")
     @ResponseBody
     public List<SearchResponse> postSearch (SearchRequestDto txt) {
         return newpostService.postSearch(txt);
     }
-
 }

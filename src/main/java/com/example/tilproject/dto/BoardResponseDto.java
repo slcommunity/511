@@ -22,6 +22,6 @@ public class BoardResponseDto {
         this.title = board.getTitle();
         this.content = board.getContent();
         this.createdAt = board.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        this.username = user.getUsername();
+        this.username = user.getName();
     }
 }
