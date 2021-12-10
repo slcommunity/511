@@ -18,6 +18,7 @@ TIL 블로그를 스프링으로 전환합니다
 📌 매일, 매주회고 
 -[상세보기 otion](https://www.notion.so/511-6fa7c25342d549cda5321849a9336844)
 
+
 ### 3차 프로젝트 With Java,Spring<br>
 프론트 엔드 배포 - [Front Repo](https://github.com/slcommunity/til-front)
 <br>
@@ -28,6 +29,8 @@ TIL 블로그를 스프링으로 전환합니다
 
 ### 3차 프로젝트
 📌아키텍처
+<br>
+![image](https://user-images.githubusercontent.com/90807343/145507697-451af947-a972-4683-ac4f-18dff8b0a6f0.png)
 
 📌기술 선택 이유!  - [상세보기 WIKI](https://github.com/slcommunity/511/wiki/3.-%EA%B8%B0%EC%88%A0-%EC%84%A0%ED%83%9D-%EC%9D%B4%EC%9C%A0)
 
